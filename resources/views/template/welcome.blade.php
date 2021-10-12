@@ -15,11 +15,12 @@
         <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/shortcode/shortcodes.css')}}">
         <link rel="stylesheet" href="{{asset('css/slick.css')}}">
-        <link rel="stylesheet" href="{{asset('style.css')}}">
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
         <script src="{{asset('js/vendor/modernizr-2.8.3.min.js')}}"></script>
     </head>
     <body>
+
         @include('partials.header')
         @yield('content')
         @include('partials.footer')
@@ -61,5 +62,6 @@
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
         <script src="{{asset('js/main.js')}}"></script>
+
     </body>
 </html>

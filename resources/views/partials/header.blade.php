@@ -16,9 +16,8 @@
                                 <ul>
                                     <li><a href="">Home</a></li>
                                     <li><a href="">About us</a></li>
-                                    <li><a href="">classes</a></li>
-                                    <li><a href="">gallery</a></li>
-                                    <li><a href="">blog</a></li>
+                                    <li><a href="">Classes</a></li>
+                                    <li><a href="">Gallery</a></li>
                                     <li><a href="">Contact</a></li>
                                 </ul>
                             </nav>
@@ -28,21 +27,22 @@
                     </div>
                 </div>
                 <div class="col-md-2 hidden-sm hidden-xs">
-                    @if (Route::has('login'))
-                        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                            @auth
-                                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                            @else
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                                @endif
-                            @endauth
-                        </div>
-                    @endif
                     <div class="header-contact text-right">
-                        <a class="banner-btn" data-text="contact" href=""><span>contact</span></a>
+                        <a class="banner-btn" data-text="contact" href="">
+                            @if (Route::has('login'))
+                                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                    @auth
+                                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    @else
+                                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
+                                        @if (Route::has('register'))
+                                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                        @endif
+                                    @endauth
+                                </div>
+                            @endif
+                        </a>
                     </div>
                 </div>
             </div>

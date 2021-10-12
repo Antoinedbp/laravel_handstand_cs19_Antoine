@@ -10,5 +10,6 @@
     @include('partials.events')
     @include('partials.pricings')
     @include('partials.clients')
+    @include('partials.map')
     @include('partials.newsletter')
 @endsection
