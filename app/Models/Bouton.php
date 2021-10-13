@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gallery extends Model
+class Bouton extends Model
 {
     use HasFactory;
 
-    protected $table = "galleries";
+    protected $table = "boutons";
 
     protected $fillable = [
-        "img"
+        "btn_slider",
+        "btn_about",
+        "btn_classes"
     ];
 }

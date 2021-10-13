@@ -10,7 +10,6 @@
     
     <p>{{  $contenuEmail["name"]  }}</p>
     <p>{{  $contenuEmail["email"]  }}</p>
-    <p>{{  $contenuEmail["subject"]  }}</p>
     <p>{{  $contenuEmail["message"]  }}</p>
 
 </body>

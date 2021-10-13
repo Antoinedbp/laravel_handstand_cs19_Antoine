@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class NewsletterSeeder extends Seeder
+class BoutonSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,11 +14,11 @@ class NewsletterSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('newsletters')->insert([
+        DB::table('boutons')->insert([
             [
-                "titre" => "subscribe now for latest update!",
-                "input" => "Enter Your E-mail ID",
-                "btn" => "submit"
+                "btn_slider" => "read more",
+                "btn_about" => "read more",
+                "btn_classes" => "view all classes"
             ]
         ]);
     }

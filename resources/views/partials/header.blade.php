@@ -14,11 +14,11 @@
                         <div class="main-menu text-center">
                             <nav>
                                 <ul>
-                                    <li><a href="">Home</a></li>
-                                    <li><a href="">About us</a></li>
-                                    <li><a href="">Classes</a></li>
-                                    <li><a href="">Gallery</a></li>
-                                    <li><a href="">Contact</a></li>
+                                    <li><a href="{{ route('home') }}">Home</a></li>
+                                    <li><a href="{{ route('about') }}">About us</a></li>
+                                    <li><a href="{{ route('classes') }}">Classes</a></li>
+                                    <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>

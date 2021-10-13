@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gallery extends Model
+class Role extends Model
 {
     use HasFactory;
 
-    protected $table = "galleries";
+    protected $table = "roles";
 
     protected $fillable = [
-        "img"
+        "nom"
     ];
+    public function users() {
+        return $this->hasMany(User::class);
+    }
 }

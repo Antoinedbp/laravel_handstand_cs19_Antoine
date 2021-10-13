@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Trainer extends Model
 {
     use HasFactory;
+
+    protected $table = "trainers";
+
+    protected $fillable = [
+        "img",
+        "nom",
+        "logo1",
+        "logo2",
+        "logo3",
+        "logo4"
+    ];
 }

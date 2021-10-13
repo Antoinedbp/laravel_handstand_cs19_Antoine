@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Classe extends Model
 {
     use HasFactory;
+
+    protected $table = "classes";
+
+    protected $fillable = [
+        "img",
+        "logo_hover",
+        "titre",
+        "logo_coach",
+        "coach",
+        "logo_time",
+        "time",
+    ];
 }

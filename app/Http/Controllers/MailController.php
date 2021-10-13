@@ -19,6 +19,8 @@ class MailController extends Controller
         ];
         
         Mail::to("antoine@mg.com")->send(new Email($contenuEmail));
+
+        return  redirect()->back()->with("message",  "le mail a bien été envoyé");
         
-        }
+    }
 }
