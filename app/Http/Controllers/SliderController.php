@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
 {
@@ -14,7 +15,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        //
+        $dataSlider = Slider::all();
+        return view('backoffice.sliders.all', compact('dataSlider'));
     }
 
     /**
@@ -24,7 +26,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice.sliders.create');
     }
 
     /**
@@ -35,7 +37,25 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize("create", Slider::class);
+
+        request()->validate([
+            "img"=>["required"],
+            "petit_titre"=>["required"],
+            "titre"=>["required"],
+            "description"=>["required"]
+        ]);
+
+        $sliders = Slider::all();
+        
+        $slider = new Slider();
+        $slider->img = $request->file('img')->hashName();
+        $request->file('img')->storePublicly('img', 'public');
+        $slider->petit_titre = $request->petit_titre;
+        $slider->titre = $request->titre;
+        $slider->description = $request->description;
+        $slider->save();
+        return redirect('/');
     }
 
     /**
@@ -46,7 +66,8 @@ class SliderController extends Controller
      */
     public function show(Slider $slider)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.sliders.show', compact('slider'));
     }
 
     /**
@@ -57,7 +78,8 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.sliders.edit', compact('slider'));
     }
 
     /**
@@ -69,7 +91,22 @@ class SliderController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        //
+        $this->authorize("update", Slider::class);
+
+        request()->validate([
+            "img"=>["required"],
+            "petit_titre"=>["required"],
+            "titre"=>["required"],
+            "description"=>["required"]
+        ]);
+        
+        $slider->img = $request->file('img')->hashName();
+        $request->file('img')->storePublicly('img', 'public');
+        $slider->petit_titre = $request->petit_titre;
+        $slider->titre = $request->titre;
+        $slider->description = $request->description;
+        $slider->save();
+        return redirect('/');
     }
 
     /**
@@ -80,6 +117,9 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        //
+        $this->authorize("delete", Slider::class);
+
+        $slider->delete();
+        return redirect()->back();
     }
 }

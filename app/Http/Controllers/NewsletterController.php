@@ -14,7 +14,8 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        $dataNews = Newsletter::all();
+        return view('backoffice.newsletters.all', compact('dataNews'));
     }
 
     /**

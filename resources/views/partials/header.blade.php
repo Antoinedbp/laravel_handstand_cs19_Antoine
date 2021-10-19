@@ -16,7 +16,7 @@
                                 <ul>
                                     <li><a href="{{ route('home') }}">Home</a></li>
                                     <li><a href="{{ route('about') }}">About us</a></li>
-                                    <li><a href="{{ route('classes') }}">Classes</a></li>
+                                    <li><a href="{{ route('classe') }}">Classes</a></li>
                                     <li><a href="{{ route('gallery') }}">Gallery</a></li>
                                     <li><a href="{{ route('contact') }}">Contact</a></li>
                                 </ul>
@@ -30,7 +30,7 @@
                     <div class="header-contact text-right">
                         <a class="banner-btn" data-text="contact" href="">
                             @if (Route::has('login'))
-                                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                <div class="fixed top-0 right-0 px-6 py-4 sm:block">
                                     @auth
                                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                                     @else

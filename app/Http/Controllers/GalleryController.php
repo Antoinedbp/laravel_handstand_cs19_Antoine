@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -14,7 +15,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        $dataGallery = Gallery::all();
+        return view('backoffice.galleries.all', compact('dataGallery'));
     }
 
     /**
@@ -24,7 +26,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice.classes.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize("create", Gallery::class);
+
+        request()->validate([
+            "img"=>["required"]
+        ]);
+        
+        $gallery = new Gallery();
+        $gallery->img = $request->file('img')->hashName();
+        $request->file('img')->storePublicly('img', 'public');
+        $gallery->save();
+        return redirect('/');
     }
 
     /**
@@ -46,7 +58,8 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.galleries.show', compact('gallery'));
     }
 
     /**
@@ -57,7 +70,8 @@ class GalleryController extends Controller
      */
     public function edit(Gallery $gallery)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.galleries.edit', compact('gallery'));
     }
 
     /**
@@ -69,7 +83,17 @@ class GalleryController extends Controller
      */
     public function update(Request $request, Gallery $gallery)
     {
-        //
+        $this->authorize("update", Classe::class);
+
+        request()->validate([
+            "img"=>["required"]
+        ]);
+        
+        Storage::disk("public")->delete("img/" . $gallery->img);
+        $gallery->img= $request->file("img")->hashName();
+        $request->file("img")->storePublicly("img", "public");
+        $gallery->save();
+        return redirect('/');
     }
 
     /**
@@ -80,6 +104,9 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $gallery)
     {
-        //
+        $this->authorize("delete", Gallery::class);
+
+        $gallery->delete();
+        return redirect()->back();
     }
 }

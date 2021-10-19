@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ClasseController extends Controller
 {
@@ -14,7 +15,8 @@ class ClasseController extends Controller
      */
     public function index()
     {
-        //
+        $dataClasse = Classe::all();
+        return view('backoffice.classes.all', compact('dataClasse'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ClasseController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice.classes.create');
     }
 
     /**
@@ -35,7 +37,27 @@ class ClasseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize("create", Classe::class);
+
+        request()->validate([
+            "img"=>["required"],
+            "titre"=>["required"],
+            "logo_coach"=>["required"],
+            "coach"=>["required"],
+            "logo_time"=>["required"],
+            "time"=>["required"],
+        ]);
+        
+        $classe = new Classe();
+        $classe->img = $request->file('img')->hashName();
+        $request->file('img')->storePublicly('img', 'public');
+        $classe->titre = $request->titre;
+        $classe->logo_coach = $request->logo_coach;
+        $classe->coach = $request->coach;
+        $classe->logo_time = $request->logo_time;
+        $classe->time = $request->time;
+        $classe->save();
+        return redirect('/');
     }
 
     /**
@@ -46,7 +68,8 @@ class ClasseController extends Controller
      */
     public function show(Classe $classe)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.classes.show', compact('classe'));
     }
 
     /**
@@ -57,7 +80,8 @@ class ClasseController extends Controller
      */
     public function edit(Classe $classe)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.classes.edit', compact('classe'));
     }
 
     /**
@@ -69,7 +93,29 @@ class ClasseController extends Controller
      */
     public function update(Request $request, Classe $classe)
     {
-        //
+        $this->authorize("update", Classe::class);
+
+        request()->validate([
+            "img"=>["required"],
+            "titre"=>["required"],
+            "logo_coach"=>["required"],
+            "coach"=>["required"],
+            "logo_time"=>["required"],
+            "time"=>["required"],
+        ]);
+        
+        if ($request->file('img') !== null) {
+            Storage::disk("public")->delete("img/" . $classe->img);
+            $classe->img= $request->file("img")->hashName();
+            $request->file("img")->storePublicly("img", "public");
+        }
+        $classe->titre = $request->titre;
+        $classe->logo_coach = $request->logo_coach;
+        $classe->coach = $request->coach;
+        $classe->logo_time = $request->logo_time;
+        $classe->time = $request->time;
+        $classe->save();
+        return redirect('/');
     }
 
     /**
@@ -80,6 +126,9 @@ class ClasseController extends Controller
      */
     public function destroy(Classe $classe)
     {
-        //
+        $this->authorize("delete", Classe::class);
+
+        $classe->delete();
+        return redirect()->back();
     }
 }

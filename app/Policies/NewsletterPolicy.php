@@ -30,7 +30,7 @@ class NewsletterPolicy
      */
     public function view(User $user, Newsletter $newsletter)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -41,7 +41,7 @@ class NewsletterPolicy
      */
     public function create(User $user)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -53,7 +53,7 @@ class NewsletterPolicy
      */
     public function update(User $user, Newsletter $newsletter)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -65,7 +65,7 @@ class NewsletterPolicy
      */
     public function delete(User $user, Newsletter $newsletter)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**

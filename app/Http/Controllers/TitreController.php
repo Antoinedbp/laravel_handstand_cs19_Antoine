@@ -14,7 +14,8 @@ class TitreController extends Controller
      */
     public function index()
     {
-        //
+        $dataTitre = Titre::all();
+        return view('backoffice.titres.all', compact('dataTitre'));
     }
 
     /**
@@ -46,7 +47,8 @@ class TitreController extends Controller
      */
     public function show(Titre $titre)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.titres.show', compact('titre'));
     }
 
     /**
@@ -57,7 +59,8 @@ class TitreController extends Controller
      */
     public function edit(Titre $titre)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.titres.edit', compact('titre'));
     }
 
     /**
@@ -69,7 +72,17 @@ class TitreController extends Controller
      */
     public function update(Request $request, Titre $titre)
     {
-        //
+        $this->authorize("update", Titre::class);
+
+        request()->validate([
+            "titre"=>["required"],
+            "description"=>["required"]
+        ]);
+        
+        $titre->titre = $request->titre;
+        $titre->description = $request->description;
+        $titre->save();
+        return redirect('/');
     }
 
     /**
@@ -80,6 +93,9 @@ class TitreController extends Controller
      */
     public function destroy(Titre $titre)
     {
-        //
+        $this->authorize("delete", Titre::class);
+
+        $titre->delete();
+        return redirect()->back();
     }
 }

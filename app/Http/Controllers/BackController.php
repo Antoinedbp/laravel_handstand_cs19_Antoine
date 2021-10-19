@@ -2,6 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Classe;
+use App\Models\Client;
+use App\Models\Event;
+use App\Models\Footer;
+use App\Models\Gallery;
+use App\Models\Map;
+use App\Models\Navbar;
+use App\Models\Newsletter;
+use App\Models\Pricing;
+use App\Models\Schedule;
+use App\Models\Slider;
+use App\Models\Titre;
+use App\Models\Trainer;
 use Illuminate\Http\Request;
 
 class BackController extends Controller
@@ -13,7 +27,21 @@ class BackController extends Controller
      */
     public function index()
     {
-        //
+        $titres = Titre::all();
+        $headers = Navbar::all();
+        $sliders = Slider::all();
+        $abouts = About::all();
+        $classes = Classe::all();
+        $schedules = Schedule::all();
+        $trainers = Trainer::all();
+        $galleries = Gallery::all();
+        $events = Event::all();
+        $pricings = Pricing::all();
+        $clients = Client::all();
+        $maps = Map::all();
+        $newsletters = Newsletter::all();
+        $footers = Footer::all();
+        return view('pages.mainBO', compact('titres', 'headers', 'sliders', 'abouts', 'classes', 'schedules', 'trainers', 'galleries', 'events', 'pricings', 'clients', 'maps', 'newsletters', 'footers'));
     }
 
     /**

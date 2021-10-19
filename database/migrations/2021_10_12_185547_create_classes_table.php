@@ -16,7 +16,6 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('img');
-            $table->string('logo_hover');
             $table->string('titre');
             $table->string('logo_coach');
             $table->string('coach');

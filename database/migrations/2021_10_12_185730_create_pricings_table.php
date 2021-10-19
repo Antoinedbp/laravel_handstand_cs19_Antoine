@@ -21,7 +21,6 @@ class CreatePricingsTable extends Migration
             $table->string('description2');
             $table->string('description3');
             $table->string('description4');
-            $table->string('description5');
             $table->string('btn');
             $table->timestamps();
         });

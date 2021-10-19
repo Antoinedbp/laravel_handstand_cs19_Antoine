@@ -13,7 +13,6 @@ class Classe extends Model
 
     protected $fillable = [
         "img",
-        "logo_hover",
         "titre",
         "logo_coach",
         "coach",

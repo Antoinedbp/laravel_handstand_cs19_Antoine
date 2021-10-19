@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BackController;
+use App\Http\Controllers\BoutonController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EventController;
@@ -36,9 +37,9 @@ Route::get('/about', function () {
     return view('pages.about');
 })->name('about');
 
-Route::get('/classes', function () {
+Route::get('/classe', function () {
     return view('pages.classe');
-})->name('classes');
+})->name('classe');
 
 Route::get('/contact', function () {
     return view('pages.contact');
@@ -55,6 +56,7 @@ Route::resource('/headers', NavbarController::class);
 Route::resource('/titres', TitreController::class);
 Route::resource('/sliders', SliderController::class);
 Route::resource('/abouts', AboutController::class);
+Route::resource('/boutons', BoutonController::class);
 Route::resource('/classes', ClasseController::class);
 Route::resource('/schedules', ScheduleController::class);
 Route::resource('/trainers', TrainerController::class);

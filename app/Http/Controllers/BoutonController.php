@@ -14,7 +14,8 @@ class BoutonController extends Controller
      */
     public function index()
     {
-        //
+        $dataBtn = Bouton::all();
+        return view('backoffice.boutons.all', compact('dataBtn'));
     }
 
     /**

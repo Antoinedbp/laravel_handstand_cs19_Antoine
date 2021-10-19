@@ -16,8 +16,7 @@ class ClasseSeeder extends Seeder
     {
         DB::table('classes')->insert([
             [
-                "img" => "img/class/1.jpg",
-                "logo_hover" => "zmdi zmdi-zoom-in",
+                "img" => "img/class/1.jpg", 
                 "titre" => "yoga for climbers",
                 "logo_coach" => "zmdi zmdi-face",
                 "coach" => "Sathi Bhuiyan",
@@ -26,7 +25,6 @@ class ClasseSeeder extends Seeder
             ],
             [
                 "img" => "img/class/2.jpg",
-                "logo_hover" => "zmdi zmdi-zoom-in",
                 "titre" => "yoga for climbers",
                 "logo_coach" => "zmdi zmdi-face",
                 "coach" => "Sathi Bhuiyan",
@@ -35,7 +33,6 @@ class ClasseSeeder extends Seeder
             ],
             [
                 "img" => "img/class/3.jpg",
-                "logo_hover" => "zmdi zmdi-zoom-in",
                 "titre" => "yoga for climbers",
                 "logo_coach" => "zmdi zmdi-face",
                 "coach" => "Sathi Bhuiyan",

@@ -30,7 +30,7 @@ class BoutonPolicy
      */
     public function view(User $user, Bouton $bouton)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -41,7 +41,7 @@ class BoutonPolicy
      */
     public function create(User $user)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -53,7 +53,7 @@ class BoutonPolicy
      */
     public function update(User $user, Bouton $bouton)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -65,7 +65,7 @@ class BoutonPolicy
      */
     public function delete(User $user, Bouton $bouton)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**

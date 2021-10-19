@@ -16,12 +16,17 @@ class SliderSeeder extends Seeder
     {
         DB::table('sliders')->insert([
             [
-                "img1" => "img/slider/slider1.jpg",
-                "petitTitre" => "Welcome Our Handstand",
+                "img" => "img/slider/slider1.jpg",
+                "petit_titre" => "Welcome Our Handstand",
                 "titre" => "Keep Refresh & Strong Your Body",
-                "description" => "Keep Refresh & Strong Your Body",
-                "img2" => "img/slider/slider2.jpg",
-            ]
+                "description" => "Keep Refresh & Strong Your Body"
+            ],
+            [
+                "img" => "img/slider/slider2.jpg",
+                "petit_titre" => "Welcome Our Handstand",
+                "titre" => "Keep Refresh & Strong Your Body",
+                "description" => "Keep Refresh & Strong Your Body"
+            ],
         ]);
     }
 }

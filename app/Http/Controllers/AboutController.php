@@ -14,7 +14,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        //
+        $dataAbout = About::all();
+        return view('backoffice.about.all', compact('dataAbout'));
     }
 
     /**
@@ -44,9 +45,12 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function show(About $about)
+    public function show($id)
     {
-        //
+        $this->authorize('edit');
+
+        $about = About::find($id);
+        return view('backoffice.about.show', compact('about'));
     }
 
     /**
@@ -55,9 +59,12 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function edit(About $about)
+    public function edit($id)
     {
-        //
+        $this->authorize('edit');
+
+        $about = About::find($id);
+        return view('backoffice.about.edit', compact('about'));
     }
 
     /**
@@ -67,9 +74,26 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, About $about)
+    public function update(Request $request, $id)
     {
-        //
+        $this->authorize("update", About::class);
+
+        request()->validate([
+            "titre"=>["required"],
+            "chemin"=>["required"],
+            "description_1"=>["required"],
+            "description_2"=>["required"],
+            "img_video"=>["required"],
+            "video"=>["required"],
+        ]);
+        $about = About::find($id);
+        $about->titre = $request->titre;
+        $about->description_1 = $request->description_1;
+        $about->description_2 = $request->description_2;
+        $about->img_video = $request->img_video;
+        $about->video = $request->video;
+        $about->save();
+        return redirect('/');
     }
 
     /**
@@ -78,8 +102,12 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function destroy(About $about)
+    public function destroy($id)
     {
-        //
+        $this->authorize("delete", About::class);
+
+        $about = About::find($id);
+        $about->delete();
+        return redirect()->back();
     }
 }

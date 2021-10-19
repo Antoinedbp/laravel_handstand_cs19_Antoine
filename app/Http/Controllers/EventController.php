@@ -14,7 +14,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $dataEvent = Event::all();
+        return view('backoffice.events.all', compact('dataEvent'));
     }
 
     /**
@@ -24,7 +25,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice.events.create');
     }
 
     /**
@@ -35,7 +36,22 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize("create", Event::class);
+
+        request()->validate([
+            "titre"=>["required"],
+            "description"=>["required"],
+            "date"=>["required"],
+            "time"=>["required"],
+        ]);
+        
+        $event = new Event();
+        $event->titre = $request->titre;
+        $event->description = $request->description;
+        $event->date = $request->date;
+        $event->time = $request->time;
+        $event->save();
+        return redirect('/');
     }
 
     /**
@@ -46,7 +62,8 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.events.show', compact('event'));
     }
 
     /**
@@ -57,7 +74,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $this->authorize('edit');
+        return view('backoffice.events.edit', compact('event'));
     }
 
     /**
@@ -69,7 +87,21 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $this->authorize("update", Event::class);
+
+        request()->validate([
+            "titre"=>["required"],
+            "description"=>["required"],
+            "date"=>["required"],
+            "time"=>["required"],
+        ]);
+        
+        $event->titre = $request->titre;
+        $event->description = $request->description;
+        $event->date = $request->date;
+        $event->time = $request->time;
+        $event->save();
+        return redirect('/');
     }
 
     /**
@@ -80,6 +112,9 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $this->authorize("delete", Event::class);
+
+        $event->delete();
+        return redirect()->back();
     }
 }
