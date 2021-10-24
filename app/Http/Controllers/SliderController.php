@@ -37,7 +37,7 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize("create", Slider::class);
+        // $this->authorize("create", Slider::class);
 
         request()->validate([
             "img"=>["required"],
@@ -66,7 +66,7 @@ class SliderController extends Controller
      */
     public function show(Slider $slider)
     {
-        $this->authorize('edit');
+        // $this->authorize('edit');
         return view('backoffice.sliders.show', compact('slider'));
     }
 
@@ -78,7 +78,7 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        $this->authorize('edit');
+        // $this->authorize('edit');
         return view('backoffice.sliders.edit', compact('slider'));
     }
 
@@ -91,7 +91,7 @@ class SliderController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        $this->authorize("update", Slider::class);
+        // $this->authorize("update", Slider::class);
 
         request()->validate([
             "img"=>["required"],
@@ -117,7 +117,7 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        $this->authorize("delete", Slider::class);
+        // $this->authorize("delete", Slider::class);
 
         $slider->delete();
         return redirect()->back();

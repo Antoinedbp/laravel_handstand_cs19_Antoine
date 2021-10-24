@@ -19,10 +19,14 @@
               <tr>
                 <th scope="col">Photo</th>
                 <th scope="col">Nom</th>
-                <th scope="col">Logo1</th>
-                <th scope="col">Logo2</th>
-                <th scope="col">Logo3</th>
-                <th scope="col">Logo4</th>
+                <th scope="col">1er Logo</th>
+                <th scope="col">Lien du 1er Logo</th>
+                <th scope="col">2ème Logo</th>
+                <th scope="col">Lien du 2ème Logo</th>
+                <th scope="col">3ème Logo</th>
+                <th scope="col">Lien du 3ème Logo</th>
+                <th scope="col">4ème Logo</th>
+                <th scope="col">Lien du 4ème Logo</th>
                 @can('edit')
                 <th scope="col">Edit</th>
                
@@ -37,9 +41,13 @@
                 <td><img height="150rem" width="150rem"  src="{{asset($item->img) }}" alt=""></td>
                 <td>{{$item->nom}}</td>
                 <td><i class="{{$item->logo1}}"></i></td>
+                <td><a href="{{$item->linkLogo1}}"></a></td>
                 <td><i class="{{$item->logo2}}"></i></td>
+                <td><a href="{{$item->linkLogo2}}"></a></td>
                 <td><i class="{{$item->logo3}}"></i></td>
+                <td><a href="{{$item->linkLogo3}}"></a></td>
                 <td><i class="{{$item->logo4}}"></i></td>
+                <td><a href="{{$item->linkLogo4}}"></a></td>
                 @can('edit')
                 <td>
                  

@@ -15,8 +15,24 @@ class Trainer extends Model
         "img",
         "nom",
         "logo1",
+        "linkLogo1",
         "logo2",
+        "linkLogo2",
         "logo3",
-        "logo4"
+        "linkLogo3",
+        "logo4",
+        "linkLogo4"
     ];
+
+    public function classes(){
+        return $this->hasMany(Classe::class);
+    }
+
+    public function user(){
+        return$this->belongsTo(User::class);
+    }
+
+    public function icons(){
+        return $this->hasMany(Icon::class);
+    }
 }

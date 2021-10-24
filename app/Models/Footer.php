@@ -27,10 +27,6 @@ class Footer extends Model
         "logo_2",
         "tweet_2",
         "site_2",
-        "titre_2",
-        "input_1",
-        "input_2",
-        "input_3",
         "btn",
         "copyright"
     ];

@@ -39,6 +39,10 @@
             </select>
             </div>
             <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Lien du 1er Logo</label>
+                <input type="text"  class="form-control" id="exampleInputPassword1" name="linkLogo1">
+            </div>
+            <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">2ème Logo </label>
             <select class="form-select" name="logo2" aria-label="Default select example">
                 <option selected>Open this select menu</option>
@@ -52,6 +56,10 @@
                     <i class="fab fa-linkedin"></i>
                 </option>
             </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Lien du 2ème Logo</label>
+                <input type="text"  class="form-control" id="exampleInputPassword1" name="linkLogo2">
             </div>
             <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">3ème Logo </label>
@@ -69,7 +77,11 @@
             </select>
             </div>
             <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">4ème Logo </label>
+                <label for="exampleInputPassword1" class="form-label">Lien du 3ème Logo</label>
+                <input type="text"  class="form-control" id="exampleInputPassword1" name="linkLogo3">
+            </div>
+            <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">4ème Logo</label>
             <select class="form-select" name="logo4" aria-label="Default select example">
                 <option selected>Open this select menu</option>
                 <option value="1">
@@ -82,6 +94,10 @@
                     <i class="fab fa-dropbox"></i>
                 </option>
             </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Lien du 4ème Logo</label>
+                <input type="text"  class="form-control" id="exampleInputPassword1" name="linkLogo4">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

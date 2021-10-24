@@ -7,14 +7,14 @@
           Headers
         </div>
         <div class="card-body">
-            <img src="{{asset({{$header->logo}})}}" alt="">
-            <h5 class="card-title">{{$header->nom1}}</h5>
-            <h5 class="card-title">{{$header->nom2}}</h5>
-            <h5 class="card-title">{{$header->nom3}}</h5>
-            <h5 class="card-title">{{$header->nom4}}</h5>
-            <h5 class="card-title">{{$header->nom5}}</h5>
+            <img src="{{asset($navbar->logo)}}" alt="">
+            <h5 class="card-title">{{$navbar->nom1}}</h5>
+            <h5 class="card-title">{{$navbar->nom2}}</h5>
+            <h5 class="card-title">{{$navbar->nom3}}</h5>
+            <h5 class="card-title">{{$navbar->nom4}}</h5>
+            <h5 class="card-title">{{$navbar->nom5}}</h5>
             <div class="d-flex justify-content-center">
-                <a href="{{route('headers.edit', $header->id)}}" class="btn btn-info">EDIT</a>
+                <a href="{{route('navbars.edit', $navbar->id)}}" class="btn btn-info">EDIT</a>
             </div>
         </div>
     </div>

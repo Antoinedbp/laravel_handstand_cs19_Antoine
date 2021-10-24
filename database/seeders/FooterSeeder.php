@@ -30,10 +30,6 @@ class FooterSeeder extends Seeder
             "logo_2" => "zmdi zmdi-twitter",
             "tweet_2" => "@envato good News for today!! We got  2 psd templete weekly top selling quality template in technology category !!!",
             "site_2" => "https://twitter.com/login",
-            "titre_2" => "get in touch",
-            "input_1" => "Name",
-            "input_2" => "Email",
-            "input_3" => "subject",
             "btn"  => "submit",
             "copyright"  => "Copyright &copy; 2017. All Rights Reserved."
         ]);

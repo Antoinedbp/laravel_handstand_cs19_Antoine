@@ -2,7 +2,7 @@
   <div class="sidebar" style="padding: 0">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus icon'></i>
-        <div class="logo_name">Bikin</div>
+        <div class="logo_name">Handstand</div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list" style="overflow: auto; padding-right: 0.5rem; padding-left: 0">
@@ -20,7 +20,7 @@
       </li>
       
       <li>
-        <a href="{{route('headers.index')}}">
+        <a href="{{route('navbars.index')}}">
           <i class='bx bx-folder' ></i>
           <span class="links_name">Header</span>
         </a>
@@ -47,6 +47,13 @@
        </a>
        <span class="tooltip">About</span>
      </li>
+     <li>
+      <a href="{{route('email.index')}}">
+        <i class='bx bx-folder' ></i>
+        <span class="links_name">Mail</span>
+      </a>
+      <span class="tooltip">Mail</span>
+    </li>
      <li>
        <a href="{{route('classes.index')}}">
          <i class='bx bx-chat' ></i>

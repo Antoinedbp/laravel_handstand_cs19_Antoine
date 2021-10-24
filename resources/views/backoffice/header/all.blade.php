@@ -21,11 +21,9 @@
             <th scope="col">3ème Nom</th>
             <th scope="col">4ème Nom</th>
             <th scope="col">5ème Nom</th>
-            @can('edit')
             <th scope="col">Edit</th>
             
             <th scope="col">Show</th>
-            @endcan
             <th scope="col">Delete</th>
           </tr>
         </thead>
@@ -41,11 +39,9 @@
             <td>{{$item->nom3}}</td>
             <td>{{$item->nom4}}</td>
             <td>{{$item->nom5}}</td>
-            
-            @can('edit')
             <td>
               
-              <a href="{{route('headers.edit', $item->id)}}">
+              <a href="{{route('navbars.edit', $item->id)}}">
                 <button class="btnEd" type="submit">
                   EDIT
                 </button>
@@ -54,15 +50,14 @@
             </td>
            
             <td>
-              <a href="{{route('headers.show', $item->id)}}">
+              <a href="{{route('navbars.show', $item->id)}}">
                 <button class="btnShow" type="submit">
                     SHOW
                 </button>
               </a>
             </td>
-            @endcan
             <td>
-              <form action="{{route('headers.destroy', $item->id)}}" method="post">
+              <form action="{{route('navbars.destroy', $item->id)}}" method="post">
                 @csrf
                     @method('DELETE')
                     <button class="btnDel" type="submit">DELETE</button>

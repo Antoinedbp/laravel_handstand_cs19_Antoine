@@ -16,8 +16,10 @@ class PricingSeeder extends Seeder
     {
         DB::table('pricings')->insert([
             [
+                "nom" => "silver",
                 "titre" => "silver package",
-                "prix" => "$30/month",
+                "prix" => "$30",
+                "mois" => "month",
                 "description1" => "Free T-Shirt & swags",
                 "description2" => "Free of all message treatments",
                 "description3" => "Access Clup Facilites",
@@ -25,8 +27,10 @@ class PricingSeeder extends Seeder
                 "btn" => "get started"
             ],
             [
+                "nom" => "gold",
                 "titre" => "gold package",
-                "prix" => "$50/month",
+                "prix" => "$50",
+                "mois" => "month",
                 "description1" => "Free T-Shirt & swags",
                 "description2" => "Free of all message treatments",
                 "description3" => "Access Clup Facilites",
@@ -34,8 +38,10 @@ class PricingSeeder extends Seeder
                 "btn" => "get started"
             ],
             [
+                "nom" => "platinium",
                 "titre" => "platinum package",
-                "prix" => "$70/month",
+                "prix" => "$70",
+                "mois" => "month",
                 "description1" => "Free T-Shirt & swags",
                 "description2" => "Free of all message treatments",
                 "description3" => "Access Clup Facilites",

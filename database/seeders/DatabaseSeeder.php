@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             RoleSeeder::class,
+            IconSeeder::class,
+            CategorieSeeder::class,
+            TagSeeder::class,
+            UserSeeder::class,
             NavbarSeeder::class,
             TitreSeeder::class,
             SliderSeeder::class,
@@ -34,12 +38,6 @@ class DatabaseSeeder extends Seeder
             FooterSeeder::class,
         ]);
         
-        DB::table('users')->insert([
-            "name" => "Antoine",
-            "email" => "antoinedebassompierre@hotmail.com",
-            "password" => Hash::make('testtest'),
-            "role_id" => 1,
-            "created_at" => now()
-        ]);
+        
     }
 }

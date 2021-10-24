@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
                 <div class="section-title text-center">
-                    <h2><span class="span">pricing</span> table</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum issss has been the industry's standard dummy text ever since the 1500s, when an unknown lorem </p>
+                    <h2>{{$titres[5]->titre}}</h2>
+                    <p>{{$titres[5]->description}}</p>
                 </div>
             </div>
         </div>
@@ -13,51 +13,51 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="single-table text-center">
                     <div class="table-head">
-                        <h2>silver package</h2>
-                        <h1>$30<span>/month</span></h1>
+                        <h2>{{$pricings[0]->titre}}</h2>
+                        <h1>{{$pricings[0]->prix}}<span>/{{$pricings[0]->mois}}</span></h1>
                     </div>
                     <div class="table-body">
                         <ul>
-                            <li>Free T-Shirt & swags</li>
-                            <li>Free of all message treatments</li>
-                            <li>Access Clup Facilites</li>
-                            <li>Out Door activites</li>
+                            <li>{{$pricings[0]->description1}}</li>
+                            <li>{{$pricings[0]->description2}}</li>
+                            <li>{{$pricings[0]->description3}}</li>
+                            <li>{{$pricings[0]->description4}}</li>
                         </ul>
-                        <a href="#">get started</a>
+                        <a href="#">{{$pricings[0]->btn}}</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="single-table text-center">
                     <div class="table-head">
-                        <h2>gold package</h2>
-                        <h1>$50<span>/month</span></h1>
+                        <h2>{{$pricings[1]->titre}}</h2>
+                        <h1>{{$pricings[1]->prix}}<span>/{{$pricings[1]->mois}}</span></h1>
                     </div>
                     <div class="table-body">
                         <ul>
-                            <li>Free T-Shirt & swags</li>
-                            <li>Free of all message treatments</li>
-                            <li>Access Clup Facilites</li>
-                            <li>Out Door activites</li>
+                            <li>{{$pricings[1]->description1}}</li>
+                            <li>{{$pricings[1]->description2}}</li>
+                            <li>{{$pricings[1]->description3}}</li>
+                            <li>{{$pricings[1]->description4}}</li>
                         </ul>
-                        <a href="#">get started</a>
+                        <a href="#">{{$pricings[1]->btn}}</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 hidden-sm col-xs-12">
                 <div class="single-table text-center">
                     <div class="table-head">
-                        <h2>platinum package</h2>
-                        <h1>$70<span>/month</span></h1>
+                        <h2>{{$pricings[2]->titre}}</h2>
+                        <h1>{{$pricings[2]->prix}}<span>/{{$pricings[2]->mois}}</span></h1>
                     </div>
                     <div class="table-body">
                         <ul>
-                            <li>Free T-Shirt & swags</li>
-                            <li>Free of all message treatments</li>
-                            <li>Access Clup Facilites</li>
-                            <li>Out Door activites</li>
+                            <li>{{$pricings[2]->description1}}</li>
+                            <li>{{$pricings[2]->description2}}</li>
+                            <li>{{$pricings[2]->description3}}</li>
+                            <li>{{$pricings[2]->description4}}</li>
                         </ul>
-                        <a href="#">get started</a>
+                        <a href="#">{{$pricings[2]->btn}}</a>
                     </div>
                 </div>
             </div>

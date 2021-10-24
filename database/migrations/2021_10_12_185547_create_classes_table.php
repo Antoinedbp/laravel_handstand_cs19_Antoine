@@ -17,10 +17,12 @@ class CreateClassesTable extends Migration
             $table->id();
             $table->string('img');
             $table->string('titre');
-            $table->string('logo_coach');
-            $table->string('coach');
-            $table->string('logo_time');
+            $table->json('package');
+            // $table->foreignId('trainer_id')->constrained('trainers', 'id')->onDelete('cascade');
             $table->string('time');
+            $table->date('date');
+            // $table->foreignId('categorie_id')->constrained('categories', 'id')->onDelete('cascade');
+            $table->boolean('prioritaire');
             $table->timestamps();
         });
     }

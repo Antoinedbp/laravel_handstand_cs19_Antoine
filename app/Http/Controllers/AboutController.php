@@ -47,7 +47,7 @@ class AboutController extends Controller
      */
     public function show($id)
     {
-        $this->authorize('edit');
+        // $this->authorize('edit');
 
         $about = About::find($id);
         return view('backoffice.about.show', compact('about'));

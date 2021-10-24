@@ -16,22 +16,37 @@ class GallerySeeder extends Seeder
     {
         DB::table('galleries')->insert([
             [
-                "img" => "img/portfolio/gal.jpg",
+                "img" => "gal.jpg",
             ],
             [
-                "img" => "img/portfolio/gal2.jpg",
+                "img" => "gal2.jpg",
             ],
             [
-                "img" => "img/portfolio/gal3.jpg",
+                "img" => "gal3.jpg",
             ],
             [
-                "img" => "img/portfolio/gal4.jpg",
+                "img" => "gal4.jpg",
             ],
             [
-                "img" => "img/portfolio/gal5.jpg",
+                "img" => "gal5.jpg",
             ],
             [
-                "img" => "img/portfolio/gal6.jpg",
+                "img" => "gal6.jpg",
+            ],
+            [
+                "img" => "gal7.jpg",
+            ],
+            [
+                "img" => "gal8.jpg",
+            ],
+            [
+                "img" => "gal9.jpg",
+            ],
+            [
+                "img" => "gal6.jpg",
+            ],
+            [
+                "img" => "gal6.jpg",
             ],
         ]);
     }

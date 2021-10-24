@@ -47,7 +47,7 @@ class NavbarController extends Controller
      */
     public function show(Navbar $navbar)
     {
-        $this->authorize('edit');
+        // $this->authorize('edit');
         return view('backoffice.header.show', compact('navbar'));
     }
 
@@ -57,10 +57,9 @@ class NavbarController extends Controller
      * @param  \App\Models\Navbar  $navbar
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Navbar $navbar)
     {
-        $this->authorize('edit');
-        $navbar= Navbar::find($id);
+        // $this->authorize('edit');
         return view('backoffice.header.edit', compact('navbar'));
     }
 
@@ -73,7 +72,7 @@ class NavbarController extends Controller
      */
     public function update(Request $request, Navbar $navbar)
     {
-        $this->authorize("update", Navbar::class);
+        // $this->authorize("update", Navbar::class);
 
         request()->validate([
             "logo"=>["required"],
@@ -102,7 +101,7 @@ class NavbarController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize("delete", Navbar::class);
+        // $this->authorize("delete", Navbar::class);
         $navbar= Navbar::find($id);
         $navbar->delete();
         return redirect()->back();

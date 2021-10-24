@@ -1665,6 +1665,15 @@ form{
   align-items: center;
 }
 
+.footers{
+  border: 2px dotted red;
+  padding:15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
 .titresBO{
   text-align: center;
   margin-top: 3rem;
@@ -1756,12 +1765,30 @@ button{
   height: 2.5rem;
 }
 
+.btnDelS{
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  width: 4.5rem;
+  height: 2.5rem;
+  margin-top: 7rem;
+}
+
 .btnEd{
   border-radius: 5px;
   background-color: blue;
   color: white;
   width: 3.5rem;
   height: 2.5rem;
+}
+
+.btnEdS{
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+  width: 3.5rem;
+  height: 2.5rem;
+  margin-top: 7rem;
 }
 
 .btnShow{
@@ -1771,5 +1798,15 @@ button{
   width: 4.5rem;
   margin-left: 2px;
   height: 2.5rem;
+}
+
+.btnShowS{
+  border-radius: 5px;
+  background-color: yellow;
+  color: black;
+  width: 4.5rem;
+  margin-left: 2px;
+  height: 2.5rem;
+  margin-top: 7rem;
 }
 

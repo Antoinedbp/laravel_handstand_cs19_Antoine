@@ -2,6 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Classe;
+use App\Models\Client;
+use App\Models\Event;
+use App\Models\Footer;
+use App\Models\Gallery;
+use App\Models\Map;
+use App\Models\Navbar;
+use App\Models\Newsletter;
+use App\Models\Pricing;
+use App\Models\Schedule;
+use App\Models\Slider;
+use App\Models\Titre;
+use App\Models\Trainer;
+use GuzzleHttp\Psr7\Header;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +28,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.main');
+        $titres = Titre::all();
+        $headers = Navbar::all();
+        $sliders = Slider::all();
+        $abouts = About::all();
+        $classes = Classe::all();
+        $schedules = Schedule::all();
+        $trainers = Trainer::all();
+        $galleris = Gallery::paginate(6);
+        $events = Event::all();
+        $pricings = Pricing::all();
+        $clients = Client::all();
+        $maps = Map::all();
+        $newsletters = Newsletter::all();
+        $footers = Footer::all();
+        return view('pages.main', compact('titres', 'headers', 'sliders', 'abouts', 'classes', 'schedules', 'trainers', 'galleris', 'events', 'pricings', 'clients', 'maps', 'newsletters', 'footers'));
     }
 
     /**

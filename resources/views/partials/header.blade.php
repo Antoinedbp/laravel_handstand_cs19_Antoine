@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-2 col-xs-12">
                     <div class="logo">
-                        <a href=""><img src="{{asset('img/logo/logo.png')}}" alt="COFFEE" /></a>
+                        <a href=""><img src="{{asset($headers[0]->logo)}}" alt="COFFEE" /></a>
                     </div>
                 </div>
                 <div class="col-md-8 col-xs-12">
@@ -14,11 +14,11 @@
                         <div class="main-menu text-center">
                             <nav>
                                 <ul>
-                                    <li><a href="{{ route('home') }}">Home</a></li>
-                                    <li><a href="{{ route('about') }}">About us</a></li>
-                                    <li><a href="{{ route('classe') }}">Classes</a></li>
-                                    <li><a href="{{ route('gallery') }}">Gallery</a></li>
-                                    <li><a href="{{ route('contact') }}">Contact</a></li>
+                                    <li><a href="{{ route('home') }}">{{$headers[0]->nom1}}</a></li>
+                                    <li><a href="{{ route('about') }}">{{$headers[0]->nom2}}</a></li>
+                                    <li><a href="{{ route('classe') }}">{{$headers[0]->nom3}}</a></li>
+                                    <li><a href="{{ route('gallery') }}">{{$headers[0]->nom4}}</a></li>
+                                    <li><a href="{{ route('contact') }}">{{$headers[0]->nom5}}</a></li>
                                 </ul>
                             </nav>
                         </div>

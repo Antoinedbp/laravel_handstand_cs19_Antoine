@@ -41,25 +41,17 @@ class TrainerController extends Controller
 
         request()->validate([
             "img"=>["required"],
-            "nom"=>["required"],
-            "logo1"=>["required"],
-            "logo2"=>["required"],
-            "logo3"=>["required"],
-            "logo4"=>["required"],
+            "user_id"=>["required"]
         ]);
         
         $trainer = new Trainer();
         $trainer->img = $request->file('img')->hashName();
         $request->file('img')->storePublicly('img', 'public');
-        $trainer->nom = $request->nom;
-        $trainer->logo1 = $request->logo1;
-        $trainer->logo2 = $request->logo2;
-        $trainer->logo3 = $request->logo3;
-        $trainer->logo4 = $request->logo4;
+        $trainer->user_id = $request->user_id;
         $trainer->save();
         return redirect('/');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -71,7 +63,7 @@ class TrainerController extends Controller
         $this->authorize('edit');
         return view('backoffice.trainers.show', compact('trainer'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,7 +75,7 @@ class TrainerController extends Controller
         $this->authorize('edit');
         return view('backoffice.trainers.edit', compact('trainer'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -94,14 +86,10 @@ class TrainerController extends Controller
     public function update(Request $request, Trainer $trainer)
     {
         $this->authorize("update", Trainer::class);
-
+        
         request()->validate([
             "img"=>["required"],
-            "nom"=>["required"],
-            "logo1"=>["required"],
-            "logo2"=>["required"],
-            "logo3"=>["required"],
-            "logo4"=>["required"],
+            "user_id"=>["required"]
         ]);
         
         if ($request->file('img') !== null) {
@@ -109,11 +97,7 @@ class TrainerController extends Controller
             $trainer->img= $request->file("img")->hashName();
             $request->file("img")->storePublicly("img", "public");
         }
-        $trainer->nom = $request->nom;
-        $trainer->logo1 = $request->logo1;
-        $trainer->logo2 = $request->logo2;
-        $trainer->logo3 = $request->logo3;
-        $trainer->logo4 = $request->logo4;
+        $trainer->user_id = $request->user_id;
         $trainer->save();
         return redirect('/');
     }

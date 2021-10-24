@@ -30,10 +30,6 @@ class CreateFootersTable extends Migration
             $table->string('logo_2');
             $table->string('tweet_2');
             $table->string('site_2');
-            $table->string('titre_2');
-            $table->string('input_1');
-            $table->string('input_2');
-            $table->string('input_3');
             $table->string('btn');
             $table->string('copyright');
             $table->timestamps();

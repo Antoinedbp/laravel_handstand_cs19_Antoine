@@ -5,34 +5,34 @@
             <div class="row">  
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="single-footer-widget">
-                        <a href=""><img src="{{asset('img/logo/logo.png')}}" alt="handstand"></a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a convallis nulla. Ut </p>
+                        <a href=""><img src="{{asset($footers[0]->logo)}}" alt="handstand"></a>
+                        <p>{{$footers[0]->description}}</p>
                         <ul>
-                            <li><i class="zmdi zmdi-email"></i> username@gmail.com</li>
-                            <li><i class="zmdi zmdi-phone"></i> (+660 256 24857)</li>
-                            <li><i class="zmdi zmdi-home"></i> Your Address Here</li>
+                            <li><i class="{{$footers[0]->logo_mail}}"></i> {{$footers[0]->mail}}</li>
+                            <li><i class="{{$footers[0]->logo_tel}}"></i> {{$footers[0]->tel}}</li>
+                            <li><i class="{{$footers[0]->logo_adress}}"></i> {{$footers[0]->adress}}</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="single-footer-widget">
-                        <h3>Recent Tweets</h3>
+                        <h3>{{$footers[0]->titre_1}}</h3>
                         <div class="single-twitt mb-10">
                             <div class="twitt-icon">
-                                <i class="zmdi zmdi-twitter"></i>
+                                <i class="{{$footers[0]->logo_1}}"></i>
                             </div>
                             <div class="twitt-content">
-                                <p>@envato good News for today!! We got  2 psd templete weekly top selling quality template in technology category !!!</p>
-                           <a href="https://twitter.com/login/">https://twitter.com/login</a>
+                                <p>{{$footers[0]->tweet_1}}</p>
+                           <a href="{{$footers[0]->site_1}}">{{$footers[0]->site_1}}</a>
                             </div>
                         </div>
                         <div class="single-twitt">
                             <div class="twitt-icon">
-                                <i class="zmdi zmdi-twitter"></i>
+                                <i class="{{$footers[0]->logo_2}}"></i>
                             </div>
                             <div class="twitt-content">
-                                <p>@envato good News for today!! We got  2 psd templete weekly top selling quality template in technology category !!!</p>
-                           <a href="https://twitter.com/login/">https://twitter.com/login</a>
+                                <p>{{$footers[0]->tweet_2}}</p>
+                           <a href="{{$footers[0]->site_2}}">{{$footers[0]->site_2}}</a>
                             </div>
                         </div>
                     </div>
@@ -40,18 +40,18 @@
                 <div class="col-md-4 hidden-sm col-xs-12">
                     <div class="single-footer-widget">
                         <h3>get in touch</h3>
-                        <form id="subscribe-form" action="https://whizthemes.com/mail-php/other/mail.php">
+                        <form id="subscribe-form" action="{{route('sendMail')}}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="Name" name="con_name">
+                                    <input type="text" placeholder="Name" name="name">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="Email" name="con_email">
+                                    <input type="text" placeholder="Email" name="email">
                                 </div>
                                 <div class="col-sm-12">
-                                    <textarea cols="30" rows="7" name="con_message" placeholder="subject"></textarea>
+                                    <textarea cols="30" rows="7" name="message" placeholder="subject"></textarea>
                                     <button type="submit">submit</button>
-                                    <p class="subscribe-message"></p>
                                 </div>
                             </div>
                         </form>
@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer-text text-center">
-                        <span>Copyright &copy; <a href="#">Hastech</a> 2017. All Rights Reserved.</span>
+                        <span>{{$footers[0]->copyright}}</span>
                     </div>
                 </div>
             </div>

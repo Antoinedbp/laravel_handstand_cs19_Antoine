@@ -18,14 +18,10 @@
               <td scope="col">#</td>
               <td scope="col">Titre</td>
               <td scope="col">Description</td>
-              @can('edit')
               <td scope="col">Edit</td>
               
               <td scope="col">Show</td>
-              @endcan
-              @can('delete')
                 <td scope="col">Delete</td>
-              @endcan
               
             </tr>
           </thead>
@@ -35,7 +31,6 @@
                   <th scope="row">{{$item->id}}</th>
                   <td>{{$item->titre}}</td>
                   <td>{{$item->description}}</td>
-                  @can('edit')
                   <td>
                      
                     <a href="{{route('titres.edit', $item->id)}}">
@@ -53,8 +48,6 @@
                       </button>
                     </a>
                   </td>
-                  @endcan
-                  @can('titre-delete', $item)
                     <td>
                       <form action="{{route('titres.destroy', $item->id)}}" method="post">
                         @csrf
@@ -62,7 +55,6 @@
                             <button class="btnDel" type="submit">DELETE</button>
                       </form>
                     </td>
-                  @endcan
                 </tr>
               </tbody>
               @endforeach

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Classe;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,8 +17,9 @@ class ClasseController extends Controller
      */
     public function index()
     {
+        $classes = Classe::orderBy('prioritaire', 'DESC')->get();
         $dataClasse = Classe::all();
-        return view('backoffice.classes.all', compact('dataClasse'));
+        return view('backoffice.classes.all', compact('classes', 'dataClasse'));
     }
 
     /**
@@ -42,20 +45,22 @@ class ClasseController extends Controller
         request()->validate([
             "img"=>["required"],
             "titre"=>["required"],
-            "logo_coach"=>["required"],
-            "coach"=>["required"],
-            "logo_time"=>["required"],
+            "package"=>["required"],
+            // "trainer_id"=>["required"],
             "time"=>["required"],
+            "date"=>["required"],
+            // "categorie_id"=>["required"],
         ]);
         
         $classe = new Classe();
         $classe->img = $request->file('img')->hashName();
         $request->file('img')->storePublicly('img', 'public');
         $classe->titre = $request->titre;
-        $classe->logo_coach = $request->logo_coach;
-        $classe->coach = $request->coach;
-        $classe->logo_time = $request->logo_time;
+        $classe->package = $request->package;
+        // $classe->trainer_id = $request->trainer_id;
         $classe->time = $request->time;
+        $classe->date = $request->date;
+        // $classe->categorie_id = $request->categorie_id;
         $classe->save();
         return redirect('/');
     }
@@ -80,8 +85,10 @@ class ClasseController extends Controller
      */
     public function edit(Classe $classe)
     {
-        $this->authorize('edit');
-        return view('backoffice.classes.edit', compact('classe'));
+        // $this->authorize('edit');
+        $tags = Tag::all();
+        $categories = Categorie::all();
+        return view('backoffice.classes.edit', compact('classe', 'tags', 'categories'));
     }
 
     /**
@@ -96,12 +103,13 @@ class ClasseController extends Controller
         $this->authorize("update", Classe::class);
 
         request()->validate([
-            "img"=>["required"],
             "titre"=>["required"],
-            "logo_coach"=>["required"],
-            "coach"=>["required"],
-            "logo_time"=>["required"],
+            "package"=>["required"],
+            // "trainer_id"=>["required"],
             "time"=>["required"],
+            "date"=>["required"],
+            // "categorie_id"=>["required"],
+            "prioritaire"=>["required"],
         ]);
         
         if ($request->file('img') !== null) {
@@ -110,10 +118,12 @@ class ClasseController extends Controller
             $request->file("img")->storePublicly("img", "public");
         }
         $classe->titre = $request->titre;
-        $classe->logo_coach = $request->logo_coach;
-        $classe->coach = $request->coach;
-        $classe->logo_time = $request->logo_time;
+        $classe->package = $request->package;
+        // $classe->trainer_id = $request->trainer_id;
         $classe->time = $request->time;
+        $classe->date = $request->date;
+        // $classe->categorie_id = $request->categorie_id;
+        $classe->prioritaire = $request->prioritaire;
         $classe->save();
         return redirect('/');
     }

@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
                 <div class="section-title text-center">
-                    <h2>gift our <span class="span">client</span> say</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum issss has been the industry's standard dummy text ever since the 1500s, when an unknown lorem </p>
+                    <h2>{{$titres[6]->titre}}</h2>
+                    <p>{{$titres[6]->description}}</p>
                 </div>
             </div>
         </div>
@@ -16,41 +16,41 @@
                         <div class="col-xs-12">
                             <div class="single-testimonial">
                                 <i class="zmdi zmdi-quote"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non mi just. Aliquam vitae purus vel odio suscipit lobortis. Donec interdum finibus egestas. In eleifend ipsum eu lacinia congue. Vestibulum sodales, sapien aliquam </p>
-                                <img src="{{asset('img/icon/signature.png')}}" alt="signature">
-                                <h6>Co-Founder Of Company</h6>
+                                <p>{{$clients[0]->avis}}</p>
+                                <img src="{{asset($clients[0]->signature)}}" alt="signature">
+                                <h6>{{$clients[0]->description}}</h6>
                             </div>    
                         </div> 
                         <div class="col-xs-12">
                             <div class="single-testimonial">
                                 <i class="zmdi zmdi-quote"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non mi just. Aliquam vitae purus vel odio suscipit lobortis. Donec interdum finibus egestas. In eleifend ipsum eu lacinia congue. Vestibulum sodales, sapien aliquam </p>
-                                <img src="{{asset('img/icon/signature.png')}}" alt="signature">
-                                <h6>Co-Founder Of Company</h6>
+                                <p>{{$clients[1]->avis}}</p>
+                                <img src="{{asset($clients[1]->signature)}}" alt="signature">
+                                <h6>{{$clients[1]->description}}</h6>
                             </div>    
                         </div> 
                         <div class="col-xs-12">
                             <div class="single-testimonial">
                                 <i class="zmdi zmdi-quote"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non mi just. Aliquam vitae purus vel odio suscipit lobortis. Donec interdum finibus egestas. In eleifend ipsum eu lacinia congue. Vestibulum sodales, sapien aliquam </p>
-                                <img src="{{asset('img/icon/signature.png')}}" alt="signature">
-                                <h6>Co-Founder Of Company</h6>
+                                <p>{{$clients[2]->avis}}</p>
+                                <img src="{{asset($clients[2]->signature)}}" alt="signature">
+                                <h6>{{$clients[2]->description}}</h6>
                             </div>    
                         </div> 
                         <div class="col-xs-12">
                             <div class="single-testimonial">
                                 <i class="zmdi zmdi-quote"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non mi just. Aliquam vitae purus vel odio suscipit lobortis. Donec interdum finibus egestas. In eleifend ipsum eu lacinia congue. Vestibulum sodales, sapien aliquam </p>
-                                <img src="{{asset('img/icon/signature.png')}}" alt="signature">
-                                <h6>Co-Founder Of Company</h6>
+                                <p>{{$clients[3]->avis}}</p>
+                                <img src="{{asset($clients[3]->signature)}}" alt="signature">
+                                <h6>{{$clients[3]->description}}</h6>
                             </div>    
                         </div> 
                         <div class="col-xs-12">
                             <div class="single-testimonial">
                                 <i class="zmdi zmdi-quote"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non mi just. Aliquam vitae purus vel odio suscipit lobortis. Donec interdum finibus egestas. In eleifend ipsum eu lacinia congue. Vestibulum sodales, sapien aliquam </p>
-                                <img src="{{asset('img/icon/signature.png')}}" alt="signature">
-                                <h6>Co-Founder Of Company</h6>
+                                <p>{{$clients[4]->avis}}</p>
+                                <img src="{{asset($clients[4]->signature)}}" alt="signature">
+                                <h6>{{$clients[4]->description}}</h6>
                             </div>    
                         </div>  
                     </div> 

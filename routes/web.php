@@ -1,12 +1,17 @@
 <?php
 
+use App\Http\Controllers\AboutBController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BackController;
 use App\Http\Controllers\BoutonController;
+use App\Http\Controllers\ClasseBController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ContactBController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FooterController;
+use App\Http\Controllers\GalleryBController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
@@ -18,6 +23,12 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TitreController;
 use App\Http\Controllers\TrainerController;
+use App\Models\Client;
+use App\Models\Footer;
+use App\Models\Gallery;
+use App\Models\Map;
+use App\Models\Navbar;
+use App\Models\Newsletter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,26 +44,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/about', function () {
-    return view('pages.about');
-})->name('about');
 
-Route::get('/classe', function () {
-    return view('pages.classe');
-})->name('classe');
 
-Route::get('/contact', function () {
-    return view('pages.contact');
-})->name('contact');
+Route::get('/about', [AboutBController::class, 'index'])->name('about');
 
-Route::get('/gallery', function () {
-    return view('pages.gallery');
-})->name('gallery');
+Route::get('/classe', [ClasseBController::class, 'index'])->name('classe');
 
+Route::get('/contact', [ContactBController::class, 'index'])->name('contact');
+
+Route::get('/gallery', [GalleryBController::class, 'index'])->name('gallery');
+
+Route::resource('email', [EmailController::class, 'index']);
 
 Route::get('/backoffice',[BackController::class, 'index'])->name('hombo');
 
-Route::resource('/headers', NavbarController::class);
+Route::resource('/navbars', NavbarController::class);
 Route::resource('/titres', TitreController::class);
 Route::resource('/sliders', SliderController::class);
 Route::resource('/abouts', AboutController::class);
@@ -68,7 +74,7 @@ Route::resource('/clients', ClientController::class);
 Route::resource('/maps', MapController::class);
 Route::resource('/footers', FooterController::class);
 
-Route::post("send-mail",  [MailController::class,  "sendMail"])->name("sendMail");
+Route::post("/send-mail",  [MailController::class,  "sendMail"])->name("sendMail");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

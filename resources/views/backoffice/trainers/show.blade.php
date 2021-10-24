@@ -10,9 +10,13 @@
             <img src="{{$trainer->img}}" alt="trainer">
             <h5 class="card-title">{{$trainer->nom}}</h5>
             <i class="{{$trainer->logo1}}"></i>
+            <a href="{{$trainer->linkLogo1}}"></a>
             <i class="{{$trainer->logo2}}"></i>
+            <a href="{{$trainer->linkLogo2}}"></a>
             <i class="{{$trainer->logo3}}"></i>
+            <a href="{{$trainer->linkLogo3}}"></a>
             <i class="{{$trainer->logo4}}"></i>
+            <a href="{{$trainer->linkLogo4}}"></a>
             <div class="d-flex justify-content-center">
                 <a href="{{route('trainers.edit', $trainer->id)}}" class="btn btn-info">EDIT</a>
             </div>

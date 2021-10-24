@@ -31,6 +31,7 @@
                     <i class="fab fa-google-plus-g"></i>
                 </option>
             </select>
+            Lien 1er Logo: <input type="text" name="linkLogo1" value="{{$trainer->linkLogo1}}">
             2ème logo:
             <select class="form-select" name="logo2" aria-label="Default select example">
                 <option selected>{{$trainer->logo2}}</option>
@@ -44,6 +45,7 @@
                     <i class="fab fa-linkedin"></i>
                 </option>
             </select>
+            Lien 2ème Logo: <input type="text" name="linkLogo2" value="{{$trainer->linkLogo2}}">
             3ème logo:
             <select class="form-select" name="logo3" aria-label="Default select example">
                 <option selected>{{$trainer->logo2}}</option>
@@ -57,6 +59,7 @@
                     <i class="fab fa-whatsapp"></i>
                 </option>
             </select>
+            Lien 3ème Logo: <input type="text" name="linkLogo3" value="{{$trainer->linkLogo3}}">
             4ème logo:
             <select class="form-select" name="logo4" aria-label="Default select example">
                 <option selected>{{$trainer->logo4}}</option>
@@ -70,6 +73,7 @@
                     <i class="fab fa-dropbox"></i>
                 </option>
             </select>
+            Lien 4ème Logo: <input type="text" name="linkLogo4" value="{{$trainer->linkLogo4}}">
             <button type="submit" style="height:2.5rem" class="btn btn-success mt-2 text-center">Submit</button>
         </form>
     

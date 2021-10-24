@@ -5,7 +5,7 @@
     <h1 class="text-center">Modifier Header</h1>
     <br>
        
-        <form class="container" action="{{route('headers.update', $navbar->id)}}" method="POST">
+        <form class="container" action="{{route('navbars.update', $navbar->id)}}" method="POST">
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
