@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Map extends Model
 {
     use HasFactory;
+
+    public function footer(){
+        return $this->hasOne(Footer::class);
+    }
 }

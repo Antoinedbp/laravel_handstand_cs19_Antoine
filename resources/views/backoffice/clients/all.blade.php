@@ -7,9 +7,14 @@
 </div>
     <h1 class="titresBO">PARTIE CLIENTS</h1>
 
-    <a href="{{route('hombo')}}" class=" text-center" style="margin-left:45%">
-      <button class="monBtn2" type="submit">Retour backoffice</button>
-  </a>
+    <div class="buttonsBO">
+        <a href="{{route('clients.create')}}" class="aBtn">
+            <button class="monBtn1" type="submit">Ajouter un élément</button>
+        </a>
+        <a href="{{route('hombo')}}" class="aBtn">
+            <button class="monBtn2" type="submit">Retour backoffice</button>
+        </a>
+    </div>
     <div class="globaleProduct">
         
        
@@ -35,7 +40,7 @@
               <tr>
                 <td>{{$item->avis}}</td>
                 <td>
-                  <img height="150rem" width="150rem"  src="{{asset($item->signature)}}" alt="">
+                  <img height="150rem" width="150rem"  src="{{asset("img/icon/" . $item->signature)}}" alt="">
                 </td>
                 <td>{{$item->description}}</td>
                 @can('edit')

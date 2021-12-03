@@ -7,22 +7,35 @@
 </div>
     <h1 class="titresBO">PARTIE CLASSES</h1>
 
-    <a href="{{route('hombo')}}" class=" text-center" style="margin-left:45%">
-      <button class="monBtn2" type="submit">Retour backoffice</button>
-  </a>
+    <div class="buttonsBO">
+        <a href="{{route('classes.create')}}" class="aBtn">
+            <button class="monBtn1" type="submit">Ajouter une Classe</button>
+        </a>
+        <a href="{{route('hombo')}}" class="aBtn">
+            <button class="monBtn2" type="submit">Retour backoffice</button>
+        </a>
+    </div>
     <div class="globaleProduct">
         
-       
+      @if (session()->has('errors'))
+        <div class="alert alert-danger">
+            <ul>
+                {{session('errors')}}
+            </ul>
+        </div>
+      @endif
 
           <table class="table container">
             <thead>
               <tr>
                 <th scope="col">Image</th>
                 <th scope="col">Titre</th>
-                <th scope="col">Logo du Coach</th>
                 <th scope="col">Coach</th>
-                <th scope="col">Logo de L'Horaire</th>
                 <th scope="col">Horaire</th>
+                <th scope="col">Prioritaire</th>
+                <th scope="col">Nombre d'Inscrits</th>
+                <th scope="col">Tags</th>
+                <th scope="col">Date</th>
                 @can('edit')
                 <th scope="col">Edit</th>
                
@@ -32,18 +45,20 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($dataClasse as $item)
+            @foreach ($dataClasse as $item)
               <tr>
-                <td><img height="30px" width="30px"  src="{{asset($item->img)}}" alt=""></td>
+                <td><img height="200px" width="200px"  src="{{asset('img/class/' . $item->img)}}" alt=""></td>
                 <td>{{$item->titre}}</td>
-                <td>
-                  <i class="{{$item->logo_coach}}"></i>
-                </td>
-                <td>{{$item->coach}}</td>
-                <td>
-                  <i class="{{$item->logo_time}}"></i>
-                </td>
+                <td>{{$item->trainer->nom}}</td>
                 <td>{{$item->time}}</td>
+                <td>{{$item->prioritaire===1?'Oui':'Non'}}</td>
+                <td>{{$item->users->count()}}</td>
+                <td>
+                  @foreach ($item->tags as $tag )
+                  {{$tag->nom}},
+                  @endforeach    
+                </td>
+                <td>{{$item->date}}</td>
                 @can('edit')
                 <td>
                  
@@ -71,7 +86,7 @@
                   </form>
                 </td>
               </tr>
-              @endforeach
+            @endforeach
             </tbody>
           </table>
        

@@ -11,6 +11,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}">
 		
 		<!-- All css here -->
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/shortcode/shortcodes.css')}}">
@@ -70,5 +71,6 @@
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
         <script src="{{asset('js/main.js')}}"></script>
+        <script src="{{asset('js/app.js')}}"></script>
     </body>
 </html>

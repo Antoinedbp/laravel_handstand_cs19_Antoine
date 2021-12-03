@@ -3,10 +3,10 @@
 @section('contentBO')
   <div style="margin-left: 5rem">
     <h1 class="title_home">HOME BACKOFFICE</h1>
-    <div class="globaleHome container " >
-      <div class="row " >
+    <div class="globaleHome container">
+      <div class="row">
 
-        <div class="col-6 skills">
+        <div class="col-12 skills">
           <h3 class="text-center">Modification NAVBAR</h3>
           <a href="{{route('navbars.index')}}">
             <button class="btn btn-danger"type="submit">DIRECTION NAVBAR</button>
@@ -36,12 +36,6 @@
             <button class="btn btn-danger"type="submit">DIRECTION CLASSES</button>
           </a>
         </div>
-        <div class="col-6 portfolios">
-          <h3 class="text-center">Modification SCHEDULE</h3>
-          <a href="{{route('schedules.index')}}">
-            <button class="btn btn-danger"type="submit">DIRECTION SCHEDULE</button>
-          </a>
-        </div>
         <div class="col-6 skills">
           <h3 class="text-center">Modification TRAINERS</h3>
           <a href="{{route('trainers.index')}}">
@@ -68,13 +62,13 @@
         </div>
         <div class="col-6 skills">
           <h3 class="text-center">Modification CLIENTS</h3>
-          <a href="{{route('clients.index')}}"> 
+          <a href="{{route('clients.index')}}">
             <button class="btn btn-danger"type="submit">DIRECTION CLIENTS</button>
           </a>
         </div>
         <div class="col-6 skills">
           <h3 class="text-center">Modification NEWSLETTER</h3>
-          <a href="{{route('newsletters.index')}}"> 
+          <a href="{{route('newsletters.index')}}">
             <button class="btn btn-danger"type="submit">DIRECTION NEWSLETTER</button>
           </a>
         </div>

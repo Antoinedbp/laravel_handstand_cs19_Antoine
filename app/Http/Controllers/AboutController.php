@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AboutController extends Controller
 {
@@ -14,8 +15,10 @@ class AboutController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataAbout = About::all();
-        return view('backoffice.about.all', compact('dataAbout'));
+        $profil = Auth::user();
+        return view('backoffice.about.all', compact('dataAbout', 'profil'));
     }
 
     /**
@@ -47,10 +50,10 @@ class AboutController extends Controller
      */
     public function show($id)
     {
-        // $this->authorize('edit');
-
+        $this->authorize('manager');
         $about = About::find($id);
-        return view('backoffice.about.show', compact('about'));
+        $profil = Auth::user();
+        return view('backoffice.about.show', compact('about', 'profil'));
     }
 
     /**
@@ -61,10 +64,10 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        $this->authorize('edit');
-
+        $this->authorize('manager');
         $about = About::find($id);
-        return view('backoffice.about.edit', compact('about'));
+        $profil = Auth::user();
+        return view('backoffice.about.edit', compact('about', 'profil'));
     }
 
     /**
@@ -76,13 +79,12 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize("update", About::class);
 
         request()->validate([
             "titre"=>["required"],
-            "chemin"=>["required"],
             "description_1"=>["required"],
             "description_2"=>["required"],
+            "btn"=>["required"],
             "img_video"=>["required"],
             "video"=>["required"],
         ]);
@@ -90,6 +92,7 @@ class AboutController extends Controller
         $about->titre = $request->titre;
         $about->description_1 = $request->description_1;
         $about->description_2 = $request->description_2;
+        $about->btn = $request->btn;
         $about->img_video = $request->img_video;
         $about->video = $request->video;
         $about->save();
@@ -104,10 +107,6 @@ class AboutController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize("delete", About::class);
-
-        $about = About::find($id);
-        $about->delete();
-        return redirect()->back();
+        //
     }
 }

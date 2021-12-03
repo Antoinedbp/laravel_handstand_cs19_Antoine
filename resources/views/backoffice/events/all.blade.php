@@ -19,6 +19,7 @@
             <th scope="col">Description</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
+            <th scope="col">Prioritaire</th>
             @can('edit')
             <th scope="col">Edit</th>
             
@@ -34,6 +35,7 @@
             <td>{{$item->description}}</td>
             <td>{{$item->date}}</td>
             <td>{{$item->time}}</td>
+            <td>{{$item->prioritaire===1?'Oui':'Non'}}</td>
             @can('edit')
             <td>
               

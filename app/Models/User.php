@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'pricing_id'
     ];
 
     /**
@@ -48,6 +49,10 @@ class User extends Authenticatable
     }
 
     public function classes(){
-        return $this->belongsToMany(Classe::class,'classe_user','user_id','classe_id');
+        return $this->belongsToMany(Classe::class,'classe_user');
+    }
+
+    public function pricing() {
+        return $this->hasOne(Pricing::class);
     }
 }

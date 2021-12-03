@@ -17,7 +17,8 @@ class CreateTrainersTable extends Migration
             $table->id();
             $table->string('img');
             $table->string('nom');
-            // $table->foreignId("user_id")->constrained("users", "id")->onDelete("cascade");
+            $table->foreignId("role_id")->constrained("roles", "id")->onDelete("cascade");
+            $table->boolean('prioritaire')->nullable();
             $table->timestamps();
         });
     }

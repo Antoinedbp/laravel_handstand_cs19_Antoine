@@ -5,7 +5,16 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
                 <div class="test-content">
                     <div class="section-title text-center">
-                        <h2>{{$titres[3]->titre}}</h2>
+                        @php
+                        $first = Str::before($titres[3]->titre, '(');
+                        $middle = Str::between($titres[3]->titre, '(', ')');
+                        $last = Str::after($titres[3]->titre, ')');
+                        @endphp
+                        @if ($first == $middle && $middle == $last)   
+                            <h2>{{$first}}</h2>
+                        @else
+                            <h2>{{$first}}<span style="color:rgb(95, 199, 174)">{{$middle}}</span>{{$last}}</h2>
+                        @endif
                         <p>{{$titres[3]->description}}</p>
                     </div>
                 </div>
@@ -27,9 +36,9 @@
                 </div>
                 @endforeach
                 
-                <div class="container">
+                {{-- <div class="container">
                     {{ $galleris->links() }} 
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

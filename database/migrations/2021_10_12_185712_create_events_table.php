@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->text('description');
             $table->string('date');
             $table->string('time');
+            $table->boolean('prioritaire');
             $table->timestamps();
         });
     }

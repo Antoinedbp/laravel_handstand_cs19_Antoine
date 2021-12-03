@@ -15,6 +15,10 @@ class CreateMapsTable extends Migration
     {
         Schema::create('maps', function (Blueprint $table) {
             $table->id();
+            $table->string('rue');
+            $table->string('numero');
+            $table->string('cp');
+            $table->string('ville');
             $table->timestamps();
         });
     }

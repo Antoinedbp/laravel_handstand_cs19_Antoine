@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Navbar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class NavbarController extends Controller
 {
@@ -14,8 +16,10 @@ class NavbarController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataNav = Navbar::all();
-        return view('backoffice.header.all', compact('dataNav'));
+        $profil = Auth::user();
+        return view('backoffice.header.all', compact('dataNav', 'profil'));
     }
 
     /**
@@ -47,8 +51,9 @@ class NavbarController extends Controller
      */
     public function show(Navbar $navbar)
     {
-        // $this->authorize('edit');
-        return view('backoffice.header.show', compact('navbar'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.header.show', compact('navbar', 'profil'));
     }
 
     /**
@@ -59,8 +64,9 @@ class NavbarController extends Controller
      */
     public function edit(Navbar $navbar)
     {
-        // $this->authorize('edit');
-        return view('backoffice.header.edit', compact('navbar'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.header.edit', compact('navbar', 'profil'));
     }
 
     /**
@@ -72,23 +78,27 @@ class NavbarController extends Controller
      */
     public function update(Request $request, Navbar $navbar)
     {
-        // $this->authorize("update", Navbar::class);
 
         request()->validate([
-            "logo"=>["required"],
             "nom1"=>["required"],
             "nom2"=>["required"],
             "nom3"=>["required"],
             "nom4"=>["required"],
             "nom5"=>["required"],
+            "nom6"=>["required"],
         ]);
         
-        $navbar->logo = $request->logo;
+        if ($request->file('logo') !== null) {
+            Storage::disk("public")->delete("img/logo/" . $navbar->logo);
+            $navbar->logo= $request->file("logo")->hashName();
+            $request->file("logo")->storePublicly("img/logo/", "public");
+        }
         $navbar->nom1 = $request->nom1;
         $navbar->nom2 = $request->nom2;
         $navbar->nom3 = $request->nom3;
         $navbar->nom4 = $request->nom4;
         $navbar->nom5 = $request->nom5;
+        $navbar->nom6 = $request->nom6;
         $navbar->save();
         return redirect('/');
     }
@@ -101,7 +111,7 @@ class NavbarController extends Controller
      */
     public function destroy($id)
     {
-        // $this->authorize("delete", Navbar::class);
+        $this->authorize('manager');
         $navbar= Navbar::find($id);
         $navbar->delete();
         return redirect()->back();

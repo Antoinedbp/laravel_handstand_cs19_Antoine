@@ -10,8 +10,9 @@
                 <h5 class="card-title">{{$about->titre}}</h5>
                 <p class="card-text">{{$about->description_1}}</p>
                 <p class="card-text">{{$about->description_2}}</p>
-                <img src="{{asset($item->img_video)}}" alt="">
-                <a class="video-popup" href={{$item->video}}></a>
+                <p class="card-text">{{$about->btn}}</p>
+                <img src="{{asset('img/about/' . $about->img_video)}}" alt="">
+                <a class="video-popup" href={{$about->video}}></a>
                 <div class="d-flex justify-content-center">
                     <a href="{{route('abouts.edit', $about->id)}}" class="btn btn-info">EDIT</a>
                 </div>

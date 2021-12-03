@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Titre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TitreController extends Controller
 {
@@ -14,8 +15,10 @@ class TitreController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataTitre = Titre::all();
-        return view('backoffice.titres.all', compact('dataTitre'));
+        $profil = Auth::user();
+        return view('backoffice.titres.all', compact('dataTitre', 'profil'));
     }
 
     /**
@@ -47,8 +50,9 @@ class TitreController extends Controller
      */
     public function show(Titre $titre)
     {
-        // $this->authorize('edit');
-        return view('backoffice.titres.show', compact('titre'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.titres.show', compact('titre', 'profil'));
     }
 
     /**
@@ -59,8 +63,9 @@ class TitreController extends Controller
      */
     public function edit(Titre $titre)
     {
-        // $this->authorize('edit');
-        return view('backoffice.titres.edit', compact('titre'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.titres.edit', compact('titre', 'profil'));
     }
 
     /**
@@ -72,7 +77,6 @@ class TitreController extends Controller
      */
     public function update(Request $request, Titre $titre)
     {
-        // $this->authorize("update", Titre::class);
 
         request()->validate([
             "titre"=>["required"],
@@ -93,7 +97,7 @@ class TitreController extends Controller
      */
     public function destroy(Titre $titre)
     {
-        // $this->authorize("delete", Titre::class);
+        $this->authorize('manager');
 
         $titre->delete();
         return redirect()->back();

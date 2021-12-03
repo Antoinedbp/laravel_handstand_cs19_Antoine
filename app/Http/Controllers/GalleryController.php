@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
@@ -15,8 +16,10 @@ class GalleryController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataGallery = Gallery::all();
-        return view('backoffice.galleries.all', compact('dataGallery'));
+        $profil = Auth::user();
+        return view('backoffice.galleries.all', compact('dataGallery', 'profil'));
     }
 
     /**
@@ -26,7 +29,9 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('backoffice.classes.create');
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.galleries.create', compact('profil'));
     }
 
     /**
@@ -37,7 +42,6 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize("create", Gallery::class);
 
         request()->validate([
             "img"=>["required"]
@@ -45,7 +49,7 @@ class GalleryController extends Controller
         
         $gallery = new Gallery();
         $gallery->img = $request->file('img')->hashName();
-        $request->file('img')->storePublicly('img', 'public');
+        $request->file('img')->storePublicly('img/portfolio/', 'public');
         $gallery->save();
         return redirect('/');
     }
@@ -56,10 +60,12 @@ class GalleryController extends Controller
      * @param  \App\Models\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function show(Gallery $gallery)
+    public function show(Gallery $id)
     {
-        $this->authorize('edit');
-        return view('backoffice.galleries.show', compact('gallery'));
+        $this->authorize('manager');
+        $gallery = $id;
+        $profil = Auth::user();
+        return view('backoffice.galleries.show', compact('gallery', 'profil'));
     }
 
     /**
@@ -70,8 +76,9 @@ class GalleryController extends Controller
      */
     public function edit(Gallery $gallery)
     {
-        $this->authorize('edit');
-        return view('backoffice.galleries.edit', compact('gallery'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.galleries.edit', compact('gallery', 'profil'));
     }
 
     /**
@@ -83,15 +90,13 @@ class GalleryController extends Controller
      */
     public function update(Request $request, Gallery $gallery)
     {
-        $this->authorize("update", Classe::class);
 
         request()->validate([
             "img"=>["required"]
         ]);
-        
-        Storage::disk("public")->delete("img/" . $gallery->img);
+        Storage::disk("public")->delete("img/portfolio/".$gallery->img);
         $gallery->img= $request->file("img")->hashName();
-        $request->file("img")->storePublicly("img", "public");
+        $request->file("img")->storePublicly("img/portfolio/", "public");
         $gallery->save();
         return redirect('/');
     }
@@ -104,7 +109,7 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $gallery)
     {
-        $this->authorize("delete", Gallery::class);
+        $this->authorize('manager');
 
         $gallery->delete();
         return redirect()->back();

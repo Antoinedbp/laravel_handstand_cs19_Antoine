@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bouton;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BoutonController extends Controller
 {
@@ -15,7 +16,8 @@ class BoutonController extends Controller
     public function index()
     {
         $dataBtn = Bouton::all();
-        return view('backoffice.boutons.all', compact('dataBtn'));
+        $profil = Auth::user();
+        return view('backoffice.boutons.all', compact('dataBtn', 'profil'));
     }
 
     /**

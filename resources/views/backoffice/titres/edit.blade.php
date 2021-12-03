@@ -6,15 +6,13 @@
         <h1>Modifier Titre</h1>
         <br>
         <form action="{{route('titres.update', $titre->id)}}" method="POST">
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            @if (session()->has('errors'))
+                <div class="alert alert-danger">
+                    <ul>
+                        {{session('errors')}}
+                    </ul>
+                </div>
+            @endif
             @csrf
             @method('PUT')
             <h5 class="mt-1">Titre:</h5>

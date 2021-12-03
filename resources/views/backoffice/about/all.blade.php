@@ -8,7 +8,13 @@
   </a>
     <div class="globaleProduct">
         
-       
+      @if (session()->has('errors'))
+        <div class="alert alert-danger">
+            <ul>
+                {{session('errors')}}
+            </ul>
+        </div>
+      @endif
 
         <table class="table container">
           <thead>
@@ -34,8 +40,9 @@
               <td>{{$item->titre}}</td>
               <td>{{$item->description_1}}</td>
               <td>{{$item->description_2}}</td>
+              <td>{{$item->btn}}</td>
               <td>
-                <img height="150rem" width="150rem"  src="{{asset($item->img_video) }}" alt="">
+                <img height="150rem" width="150rem"  src="{{asset('img/about/' . $item->img_video) }}" alt="">
               </td>
               <td>
                 <a class="video-popup" href={{$item->video}}>{{$item->video}}</a>

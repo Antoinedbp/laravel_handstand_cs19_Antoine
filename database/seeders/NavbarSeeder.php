@@ -16,12 +16,13 @@ class NavbarSeeder extends Seeder
     {
         DB::table('navbars')->insert([
             [
-                "logo" => "img/logo/logo.png",
+                "logo" => "logo.png",
                 "nom1"  => "Home",
                 "nom2"  => "About Us",
                 "nom3"  => "Classes",
                 "nom4"  => "Gallery",
                 "nom5"  => "Contact",
+                "nom6"  => "Profil",
             ]
         ]);
     }

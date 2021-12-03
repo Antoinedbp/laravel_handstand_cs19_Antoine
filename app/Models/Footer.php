@@ -30,4 +30,8 @@ class Footer extends Model
         "btn",
         "copyright"
     ];
+
+    public function map(){
+        return $this->belongsTo(Map::class);
+    }
 }

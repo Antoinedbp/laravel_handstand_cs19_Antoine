@@ -12,6 +12,7 @@ use App\Models\Navbar;
 use App\Models\Newsletter;
 use App\Models\Titre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AboutBController extends Controller
 {
@@ -30,7 +31,8 @@ class AboutBController extends Controller
         $maps = Map::all();
         $newsletters = Newsletter::all();
         $footers = Footer::all();
-        return view('pages.about', compact('headers', 'titres', 'abouts', 'events', 'clients', 'maps', 'newsletters', 'footers'));
+        $profil = Auth::user();
+        return view('pages.about', compact('headers', 'titres', 'abouts', 'events', 'clients', 'maps', 'newsletters', 'footers', 'profil'));
     }
 
     /**

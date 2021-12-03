@@ -18,6 +18,7 @@ class CreateAboutsTable extends Migration
             $table->string('titre');
             $table->text('description_1');
             $table->text('description_2');
+            $table->string('btn');
             $table->string('img_video');
             $table->string('video');
             $table->timestamps();

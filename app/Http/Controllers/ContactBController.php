@@ -13,6 +13,7 @@ use App\Models\Pricing;
 use App\Models\Schedule;
 use App\Models\Titre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactBController extends Controller
 {
@@ -30,7 +31,8 @@ class ContactBController extends Controller
         $maps = Map::all();
         $newsletters = Newsletter::all();
         $footers = Footer::all();
-        return view('pages.contact', compact('headers', 'titres', 'contacts', 'clients', 'maps', 'newsletters', 'footers'));
+        $profil = Auth::user();
+        return view('pages.contact', compact('headers', 'titres', 'contacts', 'clients', 'maps', 'newsletters', 'footers', 'profil'));
     }
 
     /**

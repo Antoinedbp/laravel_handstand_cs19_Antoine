@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsletterController extends Controller
 {
@@ -14,8 +15,10 @@ class NewsletterController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataNews = Newsletter::all();
-        return view('backoffice.newsletters.all', compact('dataNews'));
+        $profil = Auth::user();
+        return view('backoffice.newsletters.all', compact('dataNews', 'profil'));
     }
 
     /**
@@ -47,7 +50,9 @@ class NewsletterController extends Controller
      */
     public function show(Newsletter $newsletter)
     {
-        //
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.newsletters.show', compact('newsletter', 'profil'));
     }
 
     /**
@@ -58,7 +63,9 @@ class NewsletterController extends Controller
      */
     public function edit(Newsletter $newsletter)
     {
-        //
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.newsletters.edit', compact('newsletter', 'profil'));
     }
 
     /**
@@ -70,7 +77,17 @@ class NewsletterController extends Controller
      */
     public function update(Request $request, Newsletter $newsletter)
     {
-        //
+        request()->validate([
+            "titre"=>["required"],
+            "input"=>["required"],
+            "btn"=>["required"],
+        ]);
+        
+        $newsletter->titre = $request->titre;
+        $newsletter->input = $request->input;
+        $newsletter->btn = $request->btn;
+        $newsletter->save();
+        return redirect('/');
     }
 
     /**
@@ -81,6 +98,8 @@ class NewsletterController extends Controller
      */
     public function destroy(Newsletter $newsletter)
     {
-        //
+        $this->authorize('manager');
+        $newsletter->delete();
+        return redirect()->back();
     }
 }

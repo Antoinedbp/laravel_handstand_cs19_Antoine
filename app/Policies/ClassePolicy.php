@@ -44,6 +44,18 @@ class ClassePolicy
         return in_array($user->role_id, [1, 2]);
     }
 
+    public function inscription(User $user, Classe $classe)
+    {
+        if ($user->pricing_id == 1) {
+            return $classe->pricing_id == 1;
+        } elseif ($user->pricing_id == 2) {
+            return in_array($classe->pricing_id, [1, 2]);
+        } else{
+            return true;
+        }
+        
+    }
+
     /**
      * Determine whether the user can update the model.
      *
@@ -65,7 +77,7 @@ class ClassePolicy
      */
     public function delete(User $user, Classe $classe)
     {
-        return in_array($user->role_id, [1, 2]);
+        // return in_array($user->role_id, [1, 2]);
     }
 
     /**

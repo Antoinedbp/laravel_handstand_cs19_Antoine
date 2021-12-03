@@ -21,6 +21,7 @@ class CreateNavbarsTable extends Migration
             $table->string('nom3');
             $table->string('nom4');
             $table->string('nom5');
+            $table->string('nom6');
             $table->timestamps();
         });
     }

@@ -19,6 +19,8 @@ class CreateSlidersTable extends Migration
             $table->string('petit_titre');
             $table->string('titre');
             $table->text('description');
+            $table->string('btn');
+            $table->boolean('prioritaire')->nullable();
             $table->timestamps();
         });
     }

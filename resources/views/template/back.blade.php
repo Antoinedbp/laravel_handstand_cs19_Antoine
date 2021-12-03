@@ -38,6 +38,8 @@
   <link href="{{asset('assets/vendor/venobox/venobox.css')}}" rel="stylesheet">
   <link href="{{asset('assets/vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
   <link href="{{asset('assets/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+
 
   <!-- Template Main CSS File -->
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
@@ -75,12 +77,12 @@
     <script src="{{asset('js/scripts.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/tailwind.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.js')}}"></script>
-    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins.js')}}"></script>
+    <script src="{{asset('js/jquery.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/plugins.js')}}"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="{{asset('assets/js/init.js')}}"></script>
-    <script src="{{asset('assets/js/main.js')}}"></script>
+    <script src="{{asset('js/init.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

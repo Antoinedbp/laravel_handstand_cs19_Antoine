@@ -12,11 +12,13 @@ use App\Models\Map;
 use App\Models\Navbar;
 use App\Models\Newsletter;
 use App\Models\Pricing;
+use App\Models\Profil;
 use App\Models\Schedule;
 use App\Models\Slider;
 use App\Models\Titre;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BackController extends Controller
 {
@@ -41,7 +43,8 @@ class BackController extends Controller
         $maps = Map::all();
         $newsletters = Newsletter::all();
         $footers = Footer::all();
-        return view('pages.mainBO', compact('titres', 'headers', 'sliders', 'abouts', 'classes', 'schedules', 'trainers', 'galleries', 'events', 'pricings', 'clients', 'maps', 'newsletters', 'footers'));
+        $profil = Auth::user();
+        return view('pages.mainBO', compact('titres', 'headers', 'sliders', 'abouts', 'classes', 'schedules', 'trainers', 'galleries', 'events', 'pricings', 'clients', 'maps', 'newsletters', 'footers', 'profil'));
     }
 
     /**

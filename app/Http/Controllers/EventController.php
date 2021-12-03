@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -14,8 +15,10 @@ class EventController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataEvent = Event::all();
-        return view('backoffice.events.all', compact('dataEvent'));
+        $profil = Auth::user();
+        return view('backoffice.events.all', compact('dataEvent', 'profil'));
     }
 
     /**
@@ -25,6 +28,7 @@ class EventController extends Controller
      */
     public function create()
     {
+        $this->authorize('manager');
         return view('backoffice.events.create');
     }
 
@@ -36,13 +40,13 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize("create", Event::class);
 
         request()->validate([
             "titre"=>["required"],
             "description"=>["required"],
             "date"=>["required"],
             "time"=>["required"],
+            "prioritaire"=>["required"],
         ]);
         
         $event = new Event();
@@ -50,6 +54,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->date = $request->date;
         $event->time = $request->time;
+        $event->prioritaire = $request->prioritaire;
         $event->save();
         return redirect('/');
     }
@@ -62,8 +67,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $this->authorize('edit');
-        return view('backoffice.events.show', compact('event'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.events.show', compact('event', 'profil'));
     }
 
     /**
@@ -74,8 +80,9 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        $this->authorize('edit');
-        return view('backoffice.events.edit', compact('event'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.events.edit', compact('event', 'profil'));
     }
 
     /**
@@ -87,19 +94,20 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        $this->authorize("update", Event::class);
 
         request()->validate([
             "titre"=>["required"],
             "description"=>["required"],
             "date"=>["required"],
             "time"=>["required"],
+            "prioritaire"=>["required"],
         ]);
         
         $event->titre = $request->titre;
         $event->description = $request->description;
         $event->date = $request->date;
         $event->time = $request->time;
+        $event->prioritaire = $request->prioritaire;
         $event->save();
         return redirect('/');
     }
@@ -112,7 +120,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        $this->authorize("delete", Event::class);
+        $this->authorize('manager');
 
         $event->delete();
         return redirect()->back();

@@ -15,11 +15,9 @@ class CreatePivotTableClasseUser extends Migration
     {
         Schema::create('classe_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('classe_id')->constrained('classes', 'id')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
+            $table->foreignId('classe_id')->constrained('classes', 'id')->nullable()->unsigned()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users', 'id')->nullable()->unsigned()->onDelete('cascade');
             $table->timestamps();
-            $table->dropForeign(['classe_id']);
-            $table->dropForeign(['user_id']);
         });
     }
 

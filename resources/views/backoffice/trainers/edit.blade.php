@@ -5,15 +5,13 @@
     <br>
   
         <form class="container" action="{{route('trainers.update', $team->id)}}" method="POST">
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            @if (session()->has('errors'))
+                <div class="alert alert-danger">
+                    <ul>
+                        {{session('errors')}}
+                    </ul>
+                </div>
+            @endif
             @csrf
             @method('PUT')
             Image: <input type="file" name="img" value="{{$trainer->img}}">

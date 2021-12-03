@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Footer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class FooterController extends Controller
 {
@@ -14,8 +16,10 @@ class FooterController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataFooter = Footer::all();
-        return view('backoffice.footers.all', compact('dataFooter'));
+        $profil = Auth::user();
+        return view('backoffice.footers.all', compact('dataFooter', 'profil'));
     }
 
     /**
@@ -47,8 +51,9 @@ class FooterController extends Controller
      */
     public function show(Footer $footer)
     {
-        // $this->authorize('edit');
-        return view('backoffice.footers.show', compact('footer'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.footers.show', compact('footer', 'profil'));
     }
 
     /**
@@ -59,8 +64,9 @@ class FooterController extends Controller
      */
     public function edit(Footer $footer)
     {
-        // $this->authorize('edit');
-        return view('backoffice.footers.edit', compact('footer'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.footers.edit', compact('footer', 'profil'));
     }
 
     /**
@@ -72,41 +78,33 @@ class FooterController extends Controller
      */
     public function update(Request $request, Footer $footer)
     {
-         // $this->authorize("update", Footer::class);
 
          request()->validate([
-            "logo"=>["required"],
             "description"=>["required"],
-            "logo_mail"=>["required"],
             "mail"=>["required"],
-            "logo_tel"=>["required"],
             "tel"=>["required"],
-            "logo_adress"=>["required"],
             "adress"=>["required"],
             "titre_1"=>["required"],
-            "logo_1"=>["required"],
             "tweet_1"=>["required"],
             "site_1"=>["required"],
-            "logo_2"=>["required"],
             "tweet_2"=>["required"],
             "site_2"=>["required"],
             "btn"=>["required"],
             "copyright"=>["required"],
         ]);
         
-        $footer->logo = $request->logo;
+        if ($request->file('logo') !== null) {
+            Storage::disk("public")->delete("img/logo/" . $footer->logo);
+            $footer->logo= $request->file("logo")->hashName();
+            $request->file("logo")->storePublicly("img/logo/", "public");
+        }
         $footer->description = $request->description;
-        $footer->logo_mail = $request->logo_mail;
         $footer->mail = $request->mail;
-        $footer->logo_tel = $request->logo_tel;
         $footer->tel = $request->tel;
-        $footer->logo_adress = $request->logo_adress;
         $footer->adress = $request->adress;
         $footer->titre_1 = $request->titre_1;
-        $footer->logo_1 = $request->logo_1;
         $footer->tweet_1 = $request->tweet_1;
         $footer->site_1 = $request->site_1;
-        $footer->logo_2 = $request->logo_2;
         $footer->tweet_2 = $request->tweet_2;
         $footer->site_2 = $request->site_2;
         $footer->btn = $request->btn;
@@ -123,7 +121,7 @@ class FooterController extends Controller
      */
     public function destroy(Footer $footer)
     {
-        // $this->authorize("delete", Footer::class);
+        $this->authorize('manager');
         $footer->delete();
         return redirect()->back();
     }

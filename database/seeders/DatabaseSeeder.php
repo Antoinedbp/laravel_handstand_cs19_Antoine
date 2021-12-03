@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ClasseTag;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -22,19 +23,23 @@ class DatabaseSeeder extends Seeder
             IconSeeder::class,
             CategorieSeeder::class,
             TagSeeder::class,
+            PricingSeeder::class,
             UserSeeder::class,
             NavbarSeeder::class,
             TitreSeeder::class,
             SliderSeeder::class,
             AboutSeeder::class,
             BoutonSeeder::class,
-            ClasseSeeder::class,
             TrainerSeeder::class,
+            ScheduleSeeder::class,
+            ClasseSeeder::class,
+            ClasseTagSeeder::class,
+            ClasseUserSeeder::class,
             GallerySeeder::class,
             EventSeeder::class,
-            PricingSeeder::class,
             ClientSeeder::class,
             NewsletterSeeder::class,
+            MapSeeder::class,
             FooterSeeder::class,
         ]);
         

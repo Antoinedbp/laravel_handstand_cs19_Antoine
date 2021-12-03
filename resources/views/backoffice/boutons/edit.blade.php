@@ -6,15 +6,13 @@
     <br>
        
         <form class="container" action="{{route('boutons.update', $navbar->id)}}" method="POST">
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            @if (session()->has('errors'))
+                <div class="alert alert-danger">
+                    <ul>
+                        {{session('errors')}}
+                    </ul>
+                </div>
+            @endif
             @csrf
             @method('PUT')
             Bouton du Slider: <input type="text" name="btn_slider" value="{{$bouton->btn_slider}}">

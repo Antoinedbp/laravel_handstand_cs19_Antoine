@@ -14,14 +14,8 @@ class Trainer extends Model
     protected $fillable = [
         "img",
         "nom",
-        "logo1",
-        "linkLogo1",
-        "logo2",
-        "linkLogo2",
-        "logo3",
-        "linkLogo3",
-        "logo4",
-        "linkLogo4"
+        "role_id",
+        "prioritaire"
     ];
 
     public function classes(){

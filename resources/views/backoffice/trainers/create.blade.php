@@ -2,39 +2,37 @@
 
 @section('contentBO')
     <div class="container d-flex flex-column align-items-center">
-        <h1 class="text-center mt-3 d-flex align-items-center">Créer un Nouvel Avis Client</h1>
+        <h1 class="text-center mt-3 d-flex align-items-center">Créer un Nouveau Trainer</h1>
         <br>
         <form action="{{route('trainers.store')}}" method="POST">
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            @if (session()->has('errors'))
+                <div class="alert alert-danger">
+                    <ul>
+                        {{session('errors')}}
+                    </ul>
+                </div>
+            @endif
             @csrf
             <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Photo</label>
+            <label for="img" class="form-label">Photo</label>
             <input type="file" name="img">
             </div>
             <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Nom</label>
-            <input type="text"  class="form-control" id="exampleInputPassword1" name="nom">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text"  class="form-control" id="nom" name="nom">
             </div>
             <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">1er Logo </label>
+            <label for="logo1" class="form-label">1er Logo </label>
             <select class="form-select" name="logo1" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">
-                    <i class="fab fa-twitter"></i>
+                <option selected></option>
+                <option value="fab fa-twitter">
+                    Logo Twitter
                 </option>
-                <option value="2">
-                    <i class="fab fa-facebook"></i>
+                <option value="fab fa-facebook">
+                    Logo Facebook
                 </option>
-                <option value="3">
-                    <i class="fab fa-google-plus-g"></i>
+                <option value="fab fa-google-plus-g">
+                    Logo Google +
                 </option>
             </select>
             </div>

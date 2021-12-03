@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Email as MailEmail;
+use App\Mail\EmailB;
 use App\Models\Email;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
 
 class EmailController extends Controller
 {
@@ -14,8 +20,25 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $dataEmail = Email::all();
-        return view('backoffice.mails.all', compact('email'));
+        $this->authorize('manager');
+        $email=Email::all()->toArray();
+        $email=array_reverse($email);
+        $profil = Auth::user();
+        return view('backoffice.mails.all',compact('email', 'profil'));
+    }
+
+    public function indexLu()
+    {
+        // $this->authorize('manager');
+        $email=Email::all()->where('lu',1);
+        return view('backoffice.mails.all',compact('email'));
+    }
+
+    public function indexNonLu()
+    {
+        // $this->authorize('manager');
+        $email=Email::all()->where('lu',0);;
+        return view('backoffice.mails.all',compact('email'));
     }
 
     /**
@@ -36,19 +59,26 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name'=>['required'],
-            'email'=>['required'],
-            'message'=>['required'],
-            'lu'=>['required'],
+        $request->validate([
+            "name" => "required",
+            "message" => "required",
+            "email" => "required",
+            "lu"=>"required"
+            
+            
         ]);
+       
 
-        $email = new Email();
+        $email=new Email();
+        
         $email->name = $request->name;
         $email->email = $request->email;
         $email->message = $request->message;
-        $email->lu = $request->lu;
+        $email->lu = 0;
+        
         $email->save();
+        
+         Mail::to('antoinedebassompierre@hotmail.com')->send(new MailEmail($email));
         return redirect()->back();
     }
 
@@ -60,7 +90,10 @@ class EmailController extends Controller
      */
     public function show(Email $email)
     {
-        return view('backoffice.mails.show', compact('email'));
+        $this->authorize('manager');
+        $email->lu=1;
+        $email->save();
+        return view('backoffice.mails.show',compact('email'));
     }
 
     /**
@@ -94,6 +127,7 @@ class EmailController extends Controller
      */
     public function destroy(Email $email)
     {
+        $this->authorize('manager');
         $email->delete();
         return redirect()->back();
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
@@ -15,8 +16,11 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $dataSlider = Slider::all();
-        return view('backoffice.sliders.all', compact('dataSlider'));
+        $this->authorize('manager');
+        $dataSlider = Slider::orderBy('prioritaire', 'desc')
+                            ->get();
+        $profil = Auth::user();
+        return view('backoffice.sliders.all', compact('dataSlider', 'profil'));
     }
 
     /**
@@ -26,7 +30,11 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('backoffice.sliders.create');
+        $this->authorize('manager');
+        $dataSlider = Slider::orderBy('prioritaire', 'desc')
+                            ->get();
+        $profil = Auth::user();
+        return view('backoffice.sliders.create', compact('profil'));
     }
 
     /**
@@ -37,23 +45,26 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->authorize("create", Slider::class);
 
         request()->validate([
             "img"=>["required"],
             "petit_titre"=>["required"],
             "titre"=>["required"],
-            "description"=>["required"]
+            "description"=>["required"],
+            "btn"=>["required"],
+            "prioritaire"=>["required"],
         ]);
 
         $sliders = Slider::all();
         
         $slider = new Slider();
         $slider->img = $request->file('img')->hashName();
-        $request->file('img')->storePublicly('img', 'public');
+        $request->file('img')->storePublicly('img/slider/', 'public');
         $slider->petit_titre = $request->petit_titre;
         $slider->titre = $request->titre;
         $slider->description = $request->description;
+        $slider->btn = $request->btn;
+        $slider->prioritaire = $request->prioritaire;
         $slider->save();
         return redirect('/');
     }
@@ -66,8 +77,9 @@ class SliderController extends Controller
      */
     public function show(Slider $slider)
     {
-        // $this->authorize('edit');
-        return view('backoffice.sliders.show', compact('slider'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.sliders.show', compact('slider', 'profil'));
     }
 
     /**
@@ -78,8 +90,9 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        // $this->authorize('edit');
-        return view('backoffice.sliders.edit', compact('slider'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.sliders.edit', compact('slider', 'profil'));
     }
 
     /**
@@ -91,20 +104,26 @@ class SliderController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        // $this->authorize("update", Slider::class);
 
         request()->validate([
-            "img"=>["required"],
             "petit_titre"=>["required"],
             "titre"=>["required"],
-            "description"=>["required"]
+            "description"=>["required"],
+            "btn"=>["required"],
+            "prioritaire"=>["required"]
         ]);
         
-        $slider->img = $request->file('img')->hashName();
-        $request->file('img')->storePublicly('img', 'public');
+        if($request->file('img') !== null){
+            
+            Storage::disk('public')->delete('img/slider/'.$slider->img);
+            $slider->img = $request->file('img')->hashName();
+            $request->file('img')->storePublicly('img/slider/', 'public');
+        }
         $slider->petit_titre = $request->petit_titre;
         $slider->titre = $request->titre;
         $slider->description = $request->description;
+        $slider->btn = $request->btn;
+        $slider->prioritaire = $request->prioritaire;
         $slider->save();
         return redirect('/');
     }
@@ -117,8 +136,6 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        // $this->authorize("delete", Slider::class);
-
         $slider->delete();
         return redirect()->back();
     }

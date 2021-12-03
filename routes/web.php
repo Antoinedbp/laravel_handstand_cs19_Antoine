@@ -19,6 +19,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PricingController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TitreController;
@@ -54,7 +55,11 @@ Route::get('/contact', [ContactBController::class, 'index'])->name('contact');
 
 Route::get('/gallery', [GalleryBController::class, 'index'])->name('gallery');
 
-Route::resource('email', [EmailController::class, 'index']);
+Route::resource('/emails', EmailController::class);
+
+Route::get('/emailLu',[EmailController::class,'indexLu'])->name('Lu');
+
+Route::get('/emailNonLu',[EmailController::class,'indexNonLu'])->name('NonLu');
 
 Route::get('/backoffice',[BackController::class, 'index'])->name('hombo');
 
@@ -73,6 +78,9 @@ Route::resource('/newsletters', NewsletterController::class);
 Route::resource('/clients', ClientController::class);
 Route::resource('/maps', MapController::class);
 Route::resource('/footers', FooterController::class);
+Route::resource('/profils', ProfilController::class);
+
+Route::post('/inscription/{id}', [ClasseController::class, 'inscription'])->name('inscription');
 
 Route::post("/send-mail",  [MailController::class,  "sendMail"])->name("sendMail");
 

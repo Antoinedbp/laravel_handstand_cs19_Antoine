@@ -15,6 +15,7 @@ class About extends Model
         "titre",
         "description_1",
         "description_2",
+        "btn",
         "img_video",
         "video"
     ];

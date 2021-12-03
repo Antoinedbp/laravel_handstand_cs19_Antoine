@@ -15,23 +15,24 @@ class Classe extends Model
     protected $fillable = [
         "img",
         "titre",
-        "package",
-        // "trainer_id",
+        "pricing_id",
+        "trainer_id",
         "time",
-        // "categorie_id",
+        "categorie_id",
+        "schedule_id",
         "date",
     ];
 
     public function categorie(){
         return $this->belongsTo(Categorie::class);
     }
-
+ 
     public function trainer(){
         return $this->belongsTo(Trainer::class);
     }
 
     public function pricing(){
-        return $this->hasOne(Pricing::class);
+        return $this->hasMany(Pricing::class);
     }
 
     public function tags(){
@@ -39,6 +40,10 @@ class Classe extends Model
     }
 
     public function users(){
-        return $this->belongsToMany('classe_user', 'user_id', 'classe_id');
+        return $this->belongsToMany(User::class, 'classe_user');
+    }
+
+    public function schedules () {
+        return $this->belongsTo(Schedule::class , 'schedule_id');
     }
 }

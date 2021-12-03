@@ -5,15 +5,13 @@
         <h1 class="text-center mt-3 d-flex align-items-center">Créer un nouveau Cours</h1>
         <br>
         <form action="{{route('classes.store')}}" method="POST">
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            @if (session()->has('errors'))
+                <div class="alert alert-danger">
+                    <ul>
+                        {{session('errors')}}
+                    </ul>
+                </div>
+            @endif
             @csrf
             <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Image</label>

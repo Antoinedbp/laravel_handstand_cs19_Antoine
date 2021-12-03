@@ -20,10 +20,14 @@ class Pricing extends Model
         "description2",
         "description3",
         "description4",
-        "btn"
+        "btn",
     ];
 
     public function classes(){
         return $this->belongsTo(Classe::class);
+    }
+
+    public function users() {
+        return $this->belongsTo(User::class);
     }
 }

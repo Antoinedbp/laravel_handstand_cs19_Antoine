@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Icon;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class TrainerController extends Controller
@@ -15,8 +17,11 @@ class TrainerController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataTrainer = Trainer::all();
-        return view('backoffice.trainers.all', compact('dataTrainer'));
+        $profil = Auth::user();
+        $icons = Icon::all();
+        return view('backoffice.trainers.all', compact('dataTrainer', 'profil', 'icons'));
     }
 
     /**
@@ -26,7 +31,11 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        return view('backoffice.trainers.create');
+        $this->authorize('manager');
+        $trainer = Trainer::all();
+        $profil = Auth::user();
+        $icons = Icon::all();
+        return view('backoffice.trainers.create', compact('trainer', 'profil', 'icons'));
     }
 
     /**
@@ -37,17 +46,18 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize("create", Trainer::class);
 
         request()->validate([
             "img"=>["required"],
-            "user_id"=>["required"]
+            "nom"=>["required"],
+            "role_id"=>["required"]
         ]);
         
         $trainer = new Trainer();
         $trainer->img = $request->file('img')->hashName();
         $request->file('img')->storePublicly('img', 'public');
-        $trainer->user_id = $request->user_id;
+        $trainer->nom = $request->nom;
+        $trainer->role_id = $request->role_id;
         $trainer->save();
         return redirect('/');
     }
@@ -60,8 +70,10 @@ class TrainerController extends Controller
      */
     public function show(Trainer $trainer)
     {
-        $this->authorize('edit');
-        return view('backoffice.trainers.show', compact('trainer'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        $icons = Icon::all();
+        return view('backoffice.trainers.show', compact('trainer', 'profil', 'icons'));
     }
     
     /**
@@ -72,8 +84,10 @@ class TrainerController extends Controller
      */
     public function edit(Trainer $trainer)
     {
-        $this->authorize('edit');
-        return view('backoffice.trainers.edit', compact('trainer'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        $icons = Icon::all();
+        return view('backoffice.trainers.edit', compact('trainer', 'profil', 'icons'));
     }
     
     /**
@@ -85,11 +99,11 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
-        $this->authorize("update", Trainer::class);
         
         request()->validate([
             "img"=>["required"],
-            "user_id"=>["required"]
+            "nom"=>["required"],
+            "role_id"=>["required"]
         ]);
         
         if ($request->file('img') !== null) {
@@ -97,7 +111,8 @@ class TrainerController extends Controller
             $trainer->img= $request->file("img")->hashName();
             $request->file("img")->storePublicly("img", "public");
         }
-        $trainer->user_id = $request->user_id;
+        $trainer->nom = $request->nom;
+        $trainer->role_id = $request->role_id;
         $trainer->save();
         return redirect('/');
     }
@@ -110,7 +125,7 @@ class TrainerController extends Controller
      */
     public function destroy(Trainer $trainer)
     {
-        $this->authorize("delete", Trainer::class);
+        $this->authorize('manager');
 
         $trainer->delete();
         return redirect()->back();

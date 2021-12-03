@@ -15,11 +15,9 @@ class CreatePivotTableClasseTag extends Migration
     {
         Schema::create('classe_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('classe_id')->nullable()->constrained('classes', 'id');
-            $table->foreignId('tag_id')->nullable()->constrained('tags', 'id');
+            $table->foreignId('classe_id')->nullable()->constrained('classes', 'id')->onDelete('cascade');
+            $table->foreignId('tag_id')->nullable()->constrained('tags', 'id')->onDelete('cascade');
             $table->timestamps();
-            $table->dropForeign(['classe_id']);
-            $table->dropForeign(['tag_id']);
         });
     }
 

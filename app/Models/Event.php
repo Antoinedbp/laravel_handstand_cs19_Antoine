@@ -15,6 +15,7 @@ class Event extends Model
         "titre",
         "description",
         "date",
-        "time"
+        "time",
+        'prioritaire'
     ];
 }

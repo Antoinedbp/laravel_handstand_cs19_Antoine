@@ -13,7 +13,7 @@
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="about-video active">
                      <div class="game">
-                         <a href="#"><img src="{{asset($abouts[0]->img_video)}}" alt="about"></a>
+                         <a href="#"><img src="{{asset('img/about/' . $abouts[0]->img_video)}}" alt="about"></a>
                      </div> 
                      <div class="video-icon video-hover">
                          <a class="video-popup" href="{{$abouts[0]->video}}">

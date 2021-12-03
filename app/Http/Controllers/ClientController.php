@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
@@ -15,8 +16,10 @@ class ClientController extends Controller
      */
     public function index()
     {
+        $this->authorize('manager');
         $dataClient = Client::all();
-        return view('backoffice.clients.all', compact('dataClient'));
+        $profil = Auth::user();
+        return view('backoffice.clients.all', compact('dataClient', 'profil'));
     }
 
     /**
@@ -26,7 +29,9 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('backoffice.clients.create');
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.clients.create', compact('profil'));
     }
 
     /**
@@ -37,7 +42,6 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize("create", Client::class);
 
         request()->validate([
             "avis"=>["required"],
@@ -62,8 +66,9 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        $this->authorize('edit');
-        return view('backoffice.clients.show', compact('client'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.clients.show', compact('client', 'profil'));
     }
 
     /**
@@ -74,8 +79,9 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        $this->authorize('edit');
-        return view('backoffice.clients.edit', compact('client'));
+        $this->authorize('manager');
+        $profil = Auth::user();
+        return view('backoffice.clients.edit', compact('client', 'profil'));
     }
 
     /**
@@ -87,7 +93,6 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        $this->authorize("update", Client::class);
 
         request()->validate([
             "signature"=>["required"],
@@ -114,7 +119,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        $this->authorize("delete", Client::class);
+        $this->authorize('manager');
 
         $client->delete();
         return redirect()->back();

@@ -4,16 +4,23 @@
     <div class="container d-flex align-items-center justify-content-center">
         <div class="card text-center mt-4 w-75">
             <div class="card-header">
-            About
+            Footer
             </div>
             <div class="card-body">
-                <h5 class="card-title">{{$about->titre}}</h5>
-                <p class="card-text">{{$about->description_1}}</p>
-                <p class="card-text">{{$about->description_2}}</p>
-                <img src="{{asset($item->img_video)}}" alt="">
-                <a class="video-popup" href={{$item->video}}></a>
+                <img src="{{asset('img/logo/' . $footer->logo)}}" alt=""> 
+                <p class="card-text">{{$footer->description}}</p>
+                <p class="card-text">{{$footer->mail}}</p>
+                <p class="card-text">{{$footer->tel}}</p>
+                <p class="card-text">{{$footer->map->rue}} {{$footer->map->numero}}, {{$footer->map->cp}} {{$footer->map->ville}}</p>
+                <p class="card-text">{{$footer->titre_1}}</p>
+                <p class="card-text">{{$footer->tweet_1}}</p>
+                <p class="card-text">{{$footer->site_1}}</p>
+                <p class="card-text">{{$footer->tweet_2}}</p>
+                <p class="card-text">{{$footer->site_2}}</p>
+                <p class="card-text">{{$footer->btn}}</p>
+                <p class="card-text">{{$footer->copyright}}</p>
                 <div class="d-flex justify-content-center">
-                    <a href="{{route('abouts.edit', $about->id)}}" class="btn btn-info">EDIT</a>
+                    <a href="{{route('footers.edit', $footer->id)}}" class="btn btn-info">EDIT</a>
                 </div>
             </div>
         </div>

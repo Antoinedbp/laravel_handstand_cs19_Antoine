@@ -7,9 +7,14 @@
 </div>
     <h1 class="titresBO">PARTIE GALLERY</h1>
 
-    <a href="{{route('hombo')}}" class=" text-center" style="margin-left:45%">
-      <button class="monBtn2" type="submit">Retour backoffice</button>
-  </a>
+    <div class="buttonsBO">
+        <a href="{{route('galleries.create')}}" class="aBtn">
+            <button class="monBtn1" type="submit">Ajouter un élément</button>
+        </a>
+        <a href="{{route('hombo')}}" class="aBtn">
+            <button class="monBtn2" type="submit">Retour backoffice</button>
+        </a>
+    </div>
     <div class="globaleProduct">
         
        
@@ -29,7 +34,7 @@
             <tbody>
               @foreach ($dataGallery as $item)
               <tr>
-                <td><img height="150rem" width="150rem"  src="{{asset($item->img)}}" alt=""></td>
+                <td><img height="150rem" width="150rem" src="{{asset('img/portfolio/' . $item->img)}}" alt=""></td>
                 @can('edit')
                 <td>
                  

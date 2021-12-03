@@ -8,6 +8,14 @@
           <button class="monBtn2" type="submit">Retour backoffice</button>
       </a>
     </div>
+
+    @if (session()->has('errors'))
+      <div class="alert alert-danger">
+          <ul>
+              {{session('errors')}}
+          </ul>
+      </div>
+    @endif
    
     <div class="container">
       <table class="table ">
@@ -21,6 +29,7 @@
             <th scope="col">3ème Nom</th>
             <th scope="col">4ème Nom</th>
             <th scope="col">5ème Nom</th>
+            <th scope="col">6ème Nom</th>
             <th scope="col">Edit</th>
             
             <th scope="col">Show</th>
@@ -32,13 +41,14 @@
           <tr>
             <th scope="row">{{$item->id}}</th>
             <td>
-              <img height="30px" width="30px" src="{{ asset($item->logo) }}" alt="">
+              <img height="30px" width="30px" src="{{ asset("img/logo/" . $item->logo) }}" alt="">
             </td>
             <td>{{$item->nom1}}</td>
             <td>{{$item->nom2}}</td>
             <td>{{$item->nom3}}</td>
             <td>{{$item->nom4}}</td>
             <td>{{$item->nom5}}</td>
+            <td>{{$item->nom6}}</td>
             <td>
               
               <a href="{{route('navbars.edit', $item->id)}}">

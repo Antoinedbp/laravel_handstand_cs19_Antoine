@@ -19,8 +19,16 @@ class EventSeeder extends Seeder
                 "titre" => "Yoga celebration in Handstand",
                 "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'ssurvived",
                 "date" => "25 March 2016",
-                "time" => "10AM - 12AM"
-            ]
+                "time" => "10AM - 12AM",
+                "prioritaire" => false
+            ],
+            [
+                "titre" => "Yoga celebration in Handstand",
+                "description" => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'ssurvived",
+                "date" => "25 March 2016",
+                "time" => "10PM - 12PM",
+                "prioritaire" => true
+            ],
         ]);
     }
 }

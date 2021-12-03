@@ -10,7 +10,13 @@
         </a>
       </div>
       <div class=" ml-5">
-          
+        @if (session()->has('errors'))
+          <div class="alert alert-danger">
+              <ul>
+                  {{session('errors')}}
+              </ul>
+          </div>
+        @endif
         
         <table class="table">
           <thead>

@@ -14,6 +14,8 @@ use App\Models\Pricing;
 use App\Models\Schedule;
 use App\Models\Titre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ClasseBController extends Controller
 {
@@ -26,14 +28,23 @@ class ClasseBController extends Controller
     {
         $headers = Navbar::all();
         $titres = Titre::all();
-        $classes = Classe::all();
+        $classes = Classe::orderBy('prioritaire', 'desc')
+                        ->get();
         $schedules = Schedule::all();
         $pricings = Pricing::all();
         $clients = Client::all();
         $maps = Map::all();
         $newsletters = Newsletter::all();
         $footers = Footer::all();
-        return view('pages.classe', compact('headers', 'titres', 'classes', 'schedules', 'pricings', 'clients', 'maps', 'newsletters', 'footers'));
+        $allInscriptions = DB::table('classe_user')
+                            ->selectRaw('count(user_id) as  users , classe_id')
+                            ->groupBy('classe_id')
+                            ->get();
+        $allClasses = DB::table('classes')
+                    ->select('id', 'titre','schedule_id', 'trainer_id')
+                    ->get();
+        $profil = Auth::user();
+        return view('pages.classe', compact('headers', 'titres', 'classes', 'pricings', 'clients', 'maps', 'newsletters', 'footers', 'allInscriptions', 'allClasses', 'profil'));
     }
 
     /**

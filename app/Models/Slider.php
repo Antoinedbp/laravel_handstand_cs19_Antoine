@@ -15,6 +15,7 @@ class Slider extends Model
         "img",
         "petit_titre",
         "titre",
-        "description"
+        "description",
+        "btn"
     ];
 }

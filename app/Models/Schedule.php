@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     use HasFactory;
+
+    protected $table = 'schedules';
+
+    protected $fillable = [
+        'date'
+    ];
+
+    public function schedule(){
+        return $this->hasMany(Classe::class, 'schedule_id');
+    }
 }
