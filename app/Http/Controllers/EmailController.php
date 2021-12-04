@@ -30,15 +30,17 @@ class EmailController extends Controller
     public function indexLu()
     {
         // $this->authorize('manager');
+        $profil = Auth::user();
         $email=Email::all()->where('lu',1);
-        return view('backoffice.mails.all',compact('email'));
+        return view('backoffice.mails.all',compact('email', 'profil'));
     }
 
     public function indexNonLu()
     {
         // $this->authorize('manager');
-        $email=Email::all()->where('lu',0);;
-        return view('backoffice.mails.all',compact('email'));
+        $email=Email::all()->where('lu',0);
+        $profil = Auth::user();
+        return view('backoffice.mails.all',compact('email', 'profil'));
     }
 
     /**

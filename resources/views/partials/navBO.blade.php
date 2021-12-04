@@ -30,6 +30,13 @@
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
+        <a href="{{route('home')}}">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Home</span>
+        </a>
+         <span class="tooltip">Home</span>
+      </li>
+      <li>
        <a href="{{route('profils.index', $profil->id)}}">
          <i class='bx bx-user' ></i>
          <span class="links_name">Profil</span>
