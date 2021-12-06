@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ClassMail;
 use App\Models\Categorie;
 use App\Models\Classe;
 use App\Models\ClasseTag;
@@ -59,7 +60,7 @@ class ClasseController extends Controller
             $classeUser->user_id = Auth::user()->id;
             $classeUser->classe_id = $classe->id;
             $classeUser->save();
-            Mail::to(Auth::user()->email)->send(new MailEmail($classe));
+            Mail::to(Auth::user()->email)->send(new ClassMail($classeUser));
 
         }else{
             return redirect()->back()->with('errors', 'You have been already registered to classe: '  .  $classe->title . ' with classe ID: ' . $classe->id);

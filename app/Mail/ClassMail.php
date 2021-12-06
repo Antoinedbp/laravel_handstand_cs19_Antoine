@@ -10,15 +10,17 @@ use Illuminate\Queue\SerializesModels;
 class ClassMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public  $contenuClassMail;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($contenuClassMail)
     {
-        //    
+        $this->contenuClassMail =  $contenuClassMail;
     }
 
     /**

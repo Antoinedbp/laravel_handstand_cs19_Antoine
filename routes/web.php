@@ -6,6 +6,7 @@ use App\Http\Controllers\BackController;
 use App\Http\Controllers\BoutonController;
 use App\Http\Controllers\ClasseBController;
 use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\ClassMailController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactBController;
 use App\Http\Controllers\EmailController;
@@ -83,6 +84,8 @@ Route::resource('/profils', ProfilController::class);
 Route::post('/inscription/{id}', [ClasseController::class, 'inscription'])->name('inscription');
 
 Route::post("/send-mail",  [MailController::class,  "sendMail"])->name("sendMail");
+
+Route::post("/classMail",  [ClassMailController::class,  "classMail"])->name("classMail");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
