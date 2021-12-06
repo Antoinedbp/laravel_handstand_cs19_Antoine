@@ -59,7 +59,7 @@ class ClasseController extends Controller
             $classeUser->user_id = Auth::user()->id;
             $classeUser->classe_id = $classe->id;
             $classeUser->save();
-            Mail::to('antoinedebassompierre@hotmail.com')->send(new MailEmail($classe));
+            Mail::to(Auth::user()->email)->send(new MailEmail($classe));
 
         }else{
             return redirect()->back()->with('errors', 'You have been already registered to classe: '  .  $classe->title . ' with classe ID: ' . $classe->id);
