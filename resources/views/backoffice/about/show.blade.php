@@ -13,9 +13,11 @@
                 <p class="card-text">{{$about->btn}}</p>
                 <img src="{{asset('img/about/' . $about->img_video)}}" alt="">
                 <a class="video-popup" href={{$about->video}}></a>
-                <div class="d-flex justify-content-center">
-                    <a href="{{route('abouts.edit', $about->id)}}" class="btn btn-info">EDIT</a>
-                </div>
+                @can('manager')    
+                    <div class="d-flex justify-content-center">
+                        <a href="{{route('abouts.edit', $about->id)}}" class="btn btn-info">EDIT</a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>

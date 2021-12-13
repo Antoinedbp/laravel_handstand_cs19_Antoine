@@ -26,12 +26,11 @@
                 <th scope="col">Titre</th>
                 <th scope="col">Texte de l'Input</th>
                 <th scope="col">Texte du Bouton</th>
-                @can('edit')
-                <th scope="col">Edit</th>
-               
-                <th scope="col">Show</th> 
+                @can('manager')
+                  <th scope="col">Edit</th>
+                  <th scope="col">Show</th> 
+                  <th scope="col">Delete</th>
                 @endcan
-                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -40,7 +39,7 @@
                 <td>{{$item->titre}}</td>
                 <td>{{$item->input}}</td>
                 <td>{{$item->btn}}</td>
-                @can('edit')
+              @can('manager')
                 <td>
                  
                   <a href="{{route('newsletters.edit', $item->id)}}">
@@ -58,14 +57,14 @@
                     </button>
                   </a>
                 </td>
-                @endcan
                 <td>
                   <form action="{{route('newsletters.destroy', $item->id)}}" method="post">
                     @csrf
-                        @method('DELETE')
-                        <button class="btnDel" type="submit">DELETE</button>
+                    @method('DELETE')
+                    <button class="btnDel" type="submit">DELETE</button>
                   </form>
                 </td>
+              @endcan
               </tr>
               @endforeach
             </tbody>

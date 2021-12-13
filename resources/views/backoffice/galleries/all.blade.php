@@ -23,19 +23,18 @@
             <thead>
               <tr>
                 <th scope="col">Image</th>
-                @can('edit')
+                @can('manager')
                 <th scope="col">Edit</th>
-               
                 <th scope="col">Show</th> 
-                @endcan
                 <th scope="col">Delete</th>
+                @endcan
               </tr>
             </thead>
             <tbody>
               @foreach ($dataGallery as $item)
               <tr>
                 <td><img height="150rem" width="150rem" src="{{asset('img/portfolio/' . $item->img)}}" alt=""></td>
-                @can('edit')
+                @can('manager')
                 <td>
                  
                   <a href="{{route('galleries.edit', $item->id)}}">
@@ -53,14 +52,14 @@
                     </button>
                   </a>
                 </td>
-                @endcan
                 <td>
                   <form action="{{route('classes.destroy', $item->id)}}" method="post">
                     @csrf
-                        @method('DELETE')
-                        <button class="btnDel" type="submit">DELETE</button>
+                    @method('DELETE')
+                    <button class="btnDel" type="submit">DELETE</button>
                   </form>
                 </td>
+                @endcan
               </tr>
               @endforeach
             </tbody>

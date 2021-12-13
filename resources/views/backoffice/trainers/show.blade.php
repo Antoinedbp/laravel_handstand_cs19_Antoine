@@ -17,9 +17,11 @@
             <a href="{{$trainer->linkLogo3}}"></a>
             <i class="{{$trainer->logo4}}"></i>
             <a href="{{$trainer->linkLogo4}}"></a>
-            <div class="d-flex justify-content-center">
-                <a href="{{route('trainers.edit', $trainer->id)}}" class="btn btn-info">EDIT</a>
-            </div>
+            @can('manager')    
+                <div class="d-flex justify-content-center">
+                    <a href="{{route('trainers.edit', $trainer->id)}}" class="btn btn-info">EDIT</a>
+                </div>
+            @endcan
         </div>
     </div>
 </div>

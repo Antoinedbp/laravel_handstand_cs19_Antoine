@@ -8,9 +8,11 @@
         </div>
         <div class="card-body">
             <img height="50px" width="50px" src="{{$gallery->img}}" alt="gallery">
-            <div class="d-flex justify-content-center">
-                <a href="{{route('galleries.edit', $gallery->id)}}" class="btn btn-info">EDIT</a>
-            </div>
+            @can('manager')    
+                <div class="d-flex justify-content-center">
+                    <a href="{{route('galleries.edit', $gallery->id)}}" class="btn btn-info">EDIT</a>
+                </div>
+            @endcan
         </div>
     </div>
 </div>

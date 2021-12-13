@@ -10,12 +10,11 @@
             <div class="card-body">
                 <h4 class="card-title">{{$titre->titre}}</h4>
                 <p class="card-text">{{$titre->description}}</p>
-                
-                <div class="d-flex justify-content-center">
-                    <a href="{{route('titres.edit', $titre->id)}}" class="btn btn-info">EDIT</a>
-                </div>
-                
-               
+                @can('manager')    
+                    <div class="d-flex justify-content-center">
+                        <a href="{{route('titres.edit', $titre->id)}}" class="btn btn-info">EDIT</a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>

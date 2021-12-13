@@ -14,9 +14,11 @@
             <h5 class="card-title">{{$navbar->nom4}}</h5>
             <h5 class="card-title">{{$navbar->nom5}}</h5>
             <h5 class="card-title">{{$navbar->nom6}}</h5>
-            <div class="d-flex justify-content-center">
-                <a href="{{route('navbars.edit', $navbar->id)}}" class="btn btn-info">EDIT</a>
-            </div>
+            @can('manager')    
+                <div class="d-flex justify-content-center">
+                    <a href="{{route('navbars.edit', $navbar->id)}}" class="btn btn-info">EDIT</a>
+                </div>
+            @endcan
         </div>
     </div>
 </div>

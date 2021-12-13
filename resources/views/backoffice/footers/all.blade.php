@@ -30,12 +30,11 @@
               <th scope="col">Site 2</th>
               <th scope="col">Texte du Bouton</th>
               <th scope="col">© Copyright</th>
-              @can('edit')
-              <th scope="col">Edit</th>
-              
-              <th scope="col">Show</th>
+              @can('manager')
+                <th scope="col">Edit</th>
+                <th scope="col">Show</th>
+                <th scope="col">Delete</th>
               @endcan
-              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -55,7 +54,7 @@
               <td>{{$item->site_2}}</td>
               <td>{{$item->btn}}</td>
               <td>{{$item->copyright}}</td>
-              @can('edit')
+              @can('manager')
               <td>
                 
                 <a href="{{route('footers.edit', $item->id)}}">
@@ -73,14 +72,14 @@
                   </button>
                 </a>
               </td>
-              @endcan
               <td>
                 <form action="{{route('footers.destroy', $item->id)}}" method="post">
                   @csrf
-                      @method('DELETE')
-                      <button class="btnDel" type="submit">DELETE</button>
+                  @method('DELETE')
+                  <button class="btnDel" type="submit">DELETE</button>
                 </form>
               </td>
+            @endcan
             </tr>
             @endforeach
           </tbody>

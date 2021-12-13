@@ -30,10 +30,11 @@
             <th scope="col">4ème Nom</th>
             <th scope="col">5ème Nom</th>
             <th scope="col">6ème Nom</th>
-            <th scope="col">Edit</th>
-            
-            <th scope="col">Show</th>
-            <th scope="col">Delete</th>
+            @can('manager')  
+              <th scope="col">Edit</th>
+              <th scope="col">Show</th>
+              <th scope="col">Delete</th>
+            @endcan
           </tr>
         </thead>
         <tbody>
@@ -49,6 +50,7 @@
             <td>{{$item->nom4}}</td>
             <td>{{$item->nom5}}</td>
             <td>{{$item->nom6}}</td>
+            @can('manager')
             <td>
               
               <a href="{{route('navbars.edit', $item->id)}}">
@@ -73,6 +75,7 @@
                     <button class="btnDel" type="submit">DELETE</button>
               </form>
             </td>
+            @endcan
           </tr>
           @endforeach
         </tbody>

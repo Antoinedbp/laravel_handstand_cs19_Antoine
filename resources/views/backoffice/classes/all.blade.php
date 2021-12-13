@@ -36,12 +36,11 @@
                 <th scope="col">Nombre d'Inscrits</th>
                 <th scope="col">Tags</th>
                 <th scope="col">Date</th>
-                @can('edit')
-                <th scope="col">Edit</th>
-               
-                <th scope="col">Show</th> 
+                @can('coach')
+                  <th scope="col">Edit</th>
+                  <th scope="col">Show</th> 
+                  <th scope="col">Delete</th>
                 @endcan
-                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -59,7 +58,7 @@
                   @endforeach    
                 </td>
                 <td>{{$item->date}}</td>
-                @can('edit')
+                @can('coach')
                 <td>
                  
                   <a href="{{route('classes.edit', $item->id)}}">
@@ -77,14 +76,14 @@
                     </button>
                   </a>
                 </td>
-                @endcan
                 <td>
                   <form action="{{route('classes.destroy', $item->id)}}" method="post">
                     @csrf
-                        @method('DELETE')
-                        <button class="btnDel" type="submit">DELETE</button>
+                    @method('DELETE')
+                    <button class="btnDel" type="submit">DELETE</button>
                   </form>
                 </td>
+              @endcan
               </tr>
             @endforeach
             </tbody>

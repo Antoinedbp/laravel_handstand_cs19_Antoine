@@ -10,9 +10,11 @@
             <h5 class="card-title">{{$newsletter->avis}}</h5>
             <img src="{{$newsletter->signature}}" alt="signature">
             <p class="{{$newsletter->description}}"></p>
-            <div class="d-flex justify-content-center">
-                <a href="{{route('newsletters.edit', $newsletter->id)}}" class="btn btn-info">EDIT</a>
-            </div>
+            @can('manager')    
+                <div class="d-flex justify-content-center">
+                    <a href="{{route('newsletters.edit', $newsletter->id)}}" class="btn btn-info">EDIT</a>
+                </div>
+            @endcan
         </div>
     </div>
 </div>

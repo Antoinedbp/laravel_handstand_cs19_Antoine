@@ -25,12 +25,11 @@
               <th scope="col">2ème Description</th>
               <th scope="col">Img Fond de Vidéo</th>
               <th scope="col">Vidéo</th>
-              @can('edit')
-              <th scope="col">Edit</th>
-              
-              <th scope="col">Show</th>
+              @can('manager')
+                <th scope="col">Edit</th>
+                <th scope="col">Show</th>
+                <th scope="col">Delete</th>
               @endcan
-              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -47,7 +46,7 @@
               <td>
                 <a class="video-popup" href={{$item->video}}>{{$item->video}}</a>
               </td>              
-              @can('edit')
+              @can('manager')
               <td>
                 
                 <a href="{{route('abouts.edit', $item->id)}}">
@@ -65,14 +64,14 @@
                   </button>
                 </a>
               </td>
-              @endcan
               <td>
                 <form action="{{route('abouts.destroy', $item->id)}}" method="post">
                   @csrf
-                      @method('DELETE')
-                      <button class="btnDel" type="submit">DELETE</button>
+                  @method('DELETE')
+                  <button class="btnDel" type="submit">DELETE</button>
                 </form>
               </td>
+            @endcan
             </tr>
             @endforeach
           </tbody>

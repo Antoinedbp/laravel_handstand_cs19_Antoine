@@ -42,12 +42,11 @@
                 <th scope="col">4ème Logo</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Lien</th>
-                @can('edit')
-                <th scope="col">Edit</th>
-               
-                <th scope="col">Show</th> 
+                @can('manager')
+                  <th scope="col">Edit</th>
+                  <th scope="col">Show</th> 
+                  <th scope="col">Delete</th>
                 @endcan
-                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -61,7 +60,7 @@
                 <td>{{$icon->nom}}</td>
                 <td><a href="{{$icon->link}}"></a>{{$icon->link}}</td>
                 @endforeach
-                @can('edit')
+                @can('manager')
                 <td>
                  
                   <a href="{{route('trainers.edit', $item->id)}}">
@@ -79,14 +78,14 @@
                     </button>
                   </a>
                 </td>
-                @endcan
                 <td>
                   <form action="{{route('trainers.destroy', $item->id)}}" method="post">
                     @csrf
-                        @method('DELETE')
-                        <button class="btnDel" type="submit">DELETE</button>
+                    @method('DELETE')
+                    <button class="btnDel" type="submit">DELETE</button>
                   </form>
                 </td>
+              @endcan
               </tr>
               @endforeach
             </tbody>

@@ -136,6 +136,7 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
+        $this->authorize('manager');
         $slider->delete();
         return redirect()->back();
     }

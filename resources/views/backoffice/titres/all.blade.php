@@ -24,10 +24,11 @@
               <td scope="col">#</td>
               <td scope="col">Titre</td>
               <td scope="col">Description</td>
-              <td scope="col">Edit</td>
-              
-              <td scope="col">Show</td>
+              @can('manager')
+                <td scope="col">Edit</td>
+                <td scope="col">Show</td>
                 <td scope="col">Delete</td>
+              @endcan
               
             </tr>
           </thead>
@@ -37,16 +38,14 @@
                   <th scope="row">{{$item->id}}</th>
                   <td>{{$item->titre}}</td>
                   <td>{{$item->description}}</td>
+                  @can('manager')
                   <td>
-                     
                     <a href="{{route('titres.edit', $item->id)}}">
                       <button class="btnEd" type="submit">
                         EDIT
                       </button>
                     </a>
-                    
                   </td>
-                  
                   <td>
                     <a href="{{route('titres.show', $item->id)}}">
                       <button class="btnShow" type="submit">
@@ -54,13 +53,14 @@
                       </button>
                     </a>
                   </td>
-                    <td>
-                      <form action="{{route('titres.destroy', $item->id)}}" method="post">
-                        @csrf
-                            @method('DELETE')
-                            <button class="btnDel" type="submit">DELETE</button>
-                      </form>
-                    </td>
+                  <td>
+                    <form action="{{route('titres.destroy', $item->id)}}" method="post">
+                      @csrf
+                          @method('DELETE')
+                          <button class="btnDel" type="submit">DELETE</button>
+                    </form>
+                  </td>
+                  @endcan
                 </tr>
               </tbody>
               @endforeach

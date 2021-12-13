@@ -11,9 +11,11 @@
             <p>{{$event->description}}</p>
             <p>{{$event->date}}</p>
             <p>{{$event->time}}</p>
-            <div class="d-flex justify-content-center">
-                <a href="{{route('events.edit', $event->id)}}" class="btn btn-info">EDIT</a>
-            </div>
+            @can('manager')    
+                <div class="d-flex justify-content-center">
+                    <a href="{{route('events.edit', $event->id)}}" class="btn btn-info">EDIT</a>
+                </div>
+            @endcan
         </div>
     </div>
 </div>

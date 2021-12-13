@@ -50,7 +50,7 @@
                                 <td>{{$mail['email']}}</td>
                                 <td>{{$mail['name']}}</td>
                                 <td>{{$mail['message']}}</td>
-                                
+                                @can('manager')    
                                 <td>
                                     <div class="d-flex justify-content-around my-3">
                                         
@@ -62,6 +62,7 @@
                                         </form>
                                     </div>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

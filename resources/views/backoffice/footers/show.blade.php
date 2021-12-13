@@ -19,9 +19,11 @@
                 <p class="card-text">{{$footer->site_2}}</p>
                 <p class="card-text">{{$footer->btn}}</p>
                 <p class="card-text">{{$footer->copyright}}</p>
-                <div class="d-flex justify-content-center">
-                    <a href="{{route('footers.edit', $footer->id)}}" class="btn btn-info">EDIT</a>
-                </div>
+                @can('manager')    
+                    <div class="d-flex justify-content-center">
+                        <a href="{{route('footers.edit', $footer->id)}}" class="btn btn-info">EDIT</a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>

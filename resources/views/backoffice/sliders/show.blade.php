@@ -9,7 +9,9 @@
               <h5 class="card-title">{{$slider->petit_titre}}</h5>
               <h2>{{$slider->titre}}</h2>
               <p class="card-text">{{$slider->description}}</p>
-              <a href="{{route('sliders.edit', $slider->id)}}" class="btn btn-info">EDIT</a>
+              @can('manager')
+                <a href="{{route('sliders.edit', $slider->id)}}" class="btn btn-info">EDIT</a>
+              @endcan
             </div>
         </div>
     </div>

@@ -20,12 +20,11 @@
             <th scope="col">Date</th>
             <th scope="col">Time</th>
             <th scope="col">Prioritaire</th>
-            @can('edit')
-            <th scope="col">Edit</th>
-            
-            <th scope="col">Show</th> 
+            @can('manager')
+              <th scope="col">Edit</th>
+              <th scope="col">Show</th> 
+              <th scope="col">Delete</th>
             @endcan
-            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -36,7 +35,7 @@
             <td>{{$item->date}}</td>
             <td>{{$item->time}}</td>
             <td>{{$item->prioritaire===1?'Oui':'Non'}}</td>
-            @can('edit')
+            @can('manager')
             <td>
               
               <a href="{{route('events.edit', $item->id)}}">
@@ -54,14 +53,14 @@
                 </button>
               </a>
             </td>
-            @endcan
             <td>
               <form action="{{route('events.destroy', $item->id)}}" method="post">
                 @csrf
-                    @method('DELETE')
-                    <button class="btnDel" type="submit">DELETE</button>
+                @method('DELETE')
+                <button class="btnDel" type="submit">DELETE</button>
               </form>
             </td>
+          @endcan
           </tr>
           @endforeach
         </tbody>

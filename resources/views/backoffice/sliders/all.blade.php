@@ -47,7 +47,7 @@
             <td style="text-align: center; padding-top: 6rem">{{$item->btn}}</td>
             <td style="text-align: center; padding-top: 6rem">{{$item->prioritaire===1?'Oui':'Non'}}</td>
 
-            
+            @can('manager')  
             <td>
               
               <a href="{{route('sliders.edit', $item->id)}}">
@@ -72,6 +72,7 @@
                     <button class="btnDelS" type="submit">DELETE</button>
               </form>
             </td>
+          @endcan
           </tr>
           @endforeach
         </tbody>

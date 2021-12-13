@@ -25,13 +25,10 @@
                 <th scope="col">Avis</th>
                 <th scope="col">Signature</th>
                 <th scope="col">Description</th>
-                @can('edit')
-                <th scope="col">Edit</th>
-               
-                <th scope="col">Show</th> 
-                @endcan
-                @can('delete')
-                <th scope="col">Delete</th>
+                @can('manager')
+                  <th scope="col">Edit</th>
+                  <th scope="col">Show</th> 
+                  <th scope="col">Delete</th>
                 @endcan
               </tr>
             </thead>
@@ -43,7 +40,7 @@
                   <img height="150rem" width="150rem"  src="{{asset("img/icon/" . $item->signature)}}" alt="">
                 </td>
                 <td>{{$item->description}}</td>
-                @can('edit')
+                @can('manager')
                 <td>
                  
                   <a href="{{route('clients.edit', $item->id)}}">
@@ -61,14 +58,14 @@
                     </button>
                   </a>
                 </td>
-                @endcan
                 <td>
                   <form action="{{route('clients.destroy', $item->id)}}" method="post">
                     @csrf
-                        @method('DELETE')
-                        <button class="btnDel" type="submit">DELETE</button>
+                    @method('DELETE')
+                    <button class="btnDel" type="submit">DELETE</button>
                   </form>
                 </td>
+              @endcan
               </tr>
               @endforeach
             </tbody>
